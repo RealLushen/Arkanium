@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkanium - A Turn-Based RPG</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ARKANIUM</h1>
+            <p class="subtitle">A Turn-Based RPG Adventure</p>
+        </header>
+
+        <main id="main-menu">
+            <div class="player-form">
+                <div class="form-group">
+                    <label for="nickname">Enter Your Nickname:</label>
+                    <input type="text" id="nickname" placeholder="Nickname (required)" required>
+                </div>
+                
+                <div class="form-group">
+                    <h2>Choose a Starting Ability:</h2>
+                    <div id="passive-abilities" class="ability-selection"></div>
+                </div>
+
+                <button id="start-game" disabled>Start Game</button>
+            </div>
+
+            <div class="leaderboard-section">
+                <h2>Leaderboard</h2>
+                <div id="leaderboard" class="leaderboard">
+                    <div class="leaderboard-loading">Loading scores...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>
