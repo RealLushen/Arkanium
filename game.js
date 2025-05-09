@@ -245,11 +245,13 @@ document.addEventListener('DOMContentLoaded', function() {
         logEntry.textContent = message;
         logEntry.className = 'battle-log-entry';
         
-        // Optional: Add animation/highlight to status message
+        // Add animation/highlight to status message
+        statusMessageElement.classList.remove('highlight');
+        // Force a reflow to restart the animation
+        void statusMessageElement.offsetWidth;
         statusMessageElement.classList.add('highlight');
-        setTimeout(() => {
-            statusMessageElement.classList.remove('highlight');
-        }, 500);
+        
+        console.log("Status message set:", message);
     }
     
     // Enable player action buttons
@@ -268,6 +270,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Player attacks enemy
     function playerAttack() {
+        console.log("Player attack function called");
+        
+        // Disable buttons immediately to prevent double-clicks
+        disablePlayerActions();
+        
         const player = gameState.player;
         const enemy = gameState.enemy;
         
@@ -293,33 +300,52 @@ document.addEventListener('DOMContentLoaded', function() {
             setStatusMessage(`You attack for ${damage} damage${criticalHit ? ' (Critical Hit!)' : ''}.`);
         }
         
-        // Check if enemy is defeated
-        if (enemy.currentStats.hp <= 0) {
-            enemy.currentStats.hp = 0;
-            handleEnemyDefeated();
-        } else {
-            // End player turn
-            finishPlayerTurn();
-        }
-        
         // Update UI
         updatePlayerUI();
         updateEnemyUI();
+        
+        // Check if enemy is defeated
+        if (enemy.currentStats.hp <= 0) {
+            enemy.currentStats.hp = 0;
+            updateEnemyUI(); // Update UI again to ensure health is shown as 0
+            
+            // Delay before showing victory screen
+            setTimeout(() => {
+                handleEnemyDefeated();
+            }, 1000);
+        } else {
+            // End player turn after a delay
+            setTimeout(() => {
+                finishPlayerTurn();
+            }, 1000);
+        }
     }
     
     // Player defends
     function playerDefend() {
+        console.log("Player defend function called");
+        
+        // Disable buttons immediately to prevent double-clicks
+        disablePlayerActions();
+        
         const player = gameState.player;
         
         player.isDefending = true;
         setStatusMessage("You prepare to defend against the next attack.");
         
-        // End player turn
-        finishPlayerTurn();
+        // End player turn after a delay
+        setTimeout(() => {
+            finishPlayerTurn();
+        }, 1000);
     }
     
     // Player uses special ability
     function playerSpecial() {
+        console.log("Player special function called");
+        
+        // Disable buttons immediately to prevent double-clicks
+        disablePlayerActions();
+        
         const player = gameState.player;
         const enemy = gameState.enemy;
         
@@ -335,22 +361,30 @@ document.addEventListener('DOMContentLoaded', function() {
         // Display message
         setStatusMessage(specialResult.message);
         
-        // Check if enemy is defeated
-        if (enemy.currentStats.hp <= 0) {
-            enemy.currentStats.hp = 0;
-            handleEnemyDefeated();
-        } else {
-            // End player turn
-            finishPlayerTurn();
-        }
-        
         // Update UI
         updatePlayerUI();
         updateEnemyUI();
+        
+        // Check if enemy is defeated
+        if (enemy.currentStats.hp <= 0) {
+            enemy.currentStats.hp = 0;
+            updateEnemyUI(); // Update UI again to ensure health is shown as 0
+            
+            // Delay before showing victory screen
+            setTimeout(() => {
+                handleEnemyDefeated();
+            }, 1000);
+        } else {
+            // End player turn after a delay
+            setTimeout(() => {
+                finishPlayerTurn();
+            }, 1000);
+        }
     }
     
     // Finish player turn and start enemy turn
     function finishPlayerTurn() {
+        console.log("Finishing player turn");
         gameState.playerTurn = false;
         disablePlayerActions();
         
@@ -363,7 +397,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Enemy takes their turn
     function enemyTurn() {
-        if (gameState.battleOver) return;
+        console.log("Enemy turn starting");
+        
+        if (gameState.battleOver) {
+            console.log("Battle is over, skipping enemy turn");
+            return;
+        }
         
         const player = gameState.player;
         const enemy = gameState.enemy;
@@ -371,7 +410,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if enemy is stunned
         if (enemy.stunned) {
             setStatusMessage(`${enemy.name} is stunned and cannot act!`);
-            finishEnemyTurn();
+            setTimeout(() => {
+                finishEnemyTurn();
+            }, 1000);
             return;
         }
         
@@ -410,7 +451,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Check if enemy is defeated by reflection
                 if (enemy.currentStats.hp <= 0) {
                     enemy.currentStats.hp = 0;
-                    handleEnemyDefeated();
+                    updateEnemyUI();
+                    setTimeout(() => {
+                        handleEnemyDefeated();
+                    }, 1000);
                     return;
                 }
             }
@@ -446,27 +490,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Check if enemy is defeated by reflection
                 if (enemy.currentStats.hp <= 0) {
                     enemy.currentStats.hp = 0;
-                    handleEnemyDefeated();
+                    updateEnemyUI();
+                    setTimeout(() => {
+                        handleEnemyDefeated();
+                    }, 1000);
                     return;
                 }
             }
         }
         
-        // Check if player is defeated
-        if (player.currentStats.hp <= 0) {
-            player.currentStats.hp = 0;
-            handlePlayerDefeated();
-        } else {
-            finishEnemyTurn();
-        }
-        
         // Update UI
         updatePlayerUI();
         updateEnemyUI();
+        
+        // Check if player is defeated
+        if (player.currentStats.hp <= 0) {
+            player.currentStats.hp = 0;
+            updatePlayerUI();
+            setTimeout(() => {
+                handlePlayerDefeated();
+            }, 1000);
+        } else {
+            // Add a delay before finishing the enemy turn
+            setTimeout(() => {
+                finishEnemyTurn();
+            }, 1000);
+        }
     }
     
     // Finish enemy turn and start player turn
     function finishEnemyTurn() {
+        console.log("Finishing enemy turn");
+        
+        if (gameState.battleOver) {
+            console.log("Battle is over, not starting player turn");
+            return;
+        }
+        
         gameState.playerTurn = true;
         
         // Reset defending status
@@ -483,6 +543,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Process ongoing effects
         processEffects();
+        
+        // Check if either character is defeated by effects
+        if (gameState.player.currentStats.hp <= 0) {
+            gameState.player.currentStats.hp = 0;
+            updatePlayerUI();
+            handlePlayerDefeated();
+            return;
+        } else if (gameState.enemy.currentStats.hp <= 0) {
+            gameState.enemy.currentStats.hp = 0;
+            updateEnemyUI();
+            handleEnemyDefeated();
+            return;
+        }
         
         // Start player turn
         setStatusMessage("Your turn!");
@@ -560,6 +633,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle player defeated
     function handlePlayerDefeated() {
+        console.log("Player defeated, game over");
         gameState.battleOver = true;
         gameState.gameOver = true;
         
@@ -572,6 +646,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle enemy defeated
     function handleEnemyDefeated() {
+        console.log("Enemy defeated");
         gameState.battleOver = true;
         
         setStatusMessage(`You defeated the ${gameState.enemy.name}!`);
