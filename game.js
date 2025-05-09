@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Parse game data
     const gameData = JSON.parse(gameDataString);
+    console.log("Game data loaded:", gameData); // Debug
     
     // DOM Elements
     const playerNicknameElement = document.getElementById('player-nickname');
@@ -89,21 +90,45 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Apply starting passive
     if (gameData.selectedPassive) {
-        const passiveEffect = gameData.selectedPassive.effect(gameState.player);
-        gameState.player.mutations.push({
-            name: gameData.selectedPassive.name,
-            description: gameData.selectedPassive.description,
-            effect: passiveEffect,
-            type: gameData.selectedPassive.type
-        });
+        console.log("Applying starting passive:", gameData.selectedPassive.name);
+        try {
+            // We need to get the actual passive ability from STARTING_PASSIVES
+            const passiveId = gameData.selectedPassive.id;
+            const actualPassive = STARTING_PASSIVES.find(p => p.id === passiveId);
+            
+            if (actualPassive) {
+                const passiveEffect = actualPassive.effect(gameState.player);
+                gameState.player.mutations.push({
+                    name: actualPassive.name,
+                    description: actualPassive.description,
+                    effect: passiveEffect,
+                    type: actualPassive.type
+                });
+            } else {
+                console.error("Could not find passive with id:", passiveId);
+            }
+        } catch (error) {
+            console.error("Error applying passive:", error);
+        }
     }
     
     // Initialize the game
     function initializeGame() {
+        console.log("Initializing game...");
+        // Set the player's nickname
+        gameState.player.nickname = gameData.nickname;
+        
+        // Update UI elements
         updatePlayerUI();
-        spawnEnemy();
-        setupEventListeners();
         updateMutationsLog();
+        
+        // Spawn the first enemy
+        spawnEnemy();
+        
+        // Setup event listeners
+        setupEventListeners();
+        
+        console.log("Game initialized!");
     }
     
     // Spawn a new enemy based on player level
@@ -605,8 +630,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show mutation selection screen
     function showMutationSelection() {
+        console.log("Showing mutation selection");
         // Get three random mutations
         const randomMutations = getRandomMutations(3);
+        console.log("Random mutations:", randomMutations);
         
         // Clear the mutations options container
         mutationsOptionsElement.innerHTML = '';
@@ -623,6 +650,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             
             mutationOption.addEventListener('click', () => {
+                console.log(`Selected mutation: ${mutation.name}`);
                 // Apply mutation
                 const effectResult = mutation.effect(gameState.player);
                 
@@ -671,6 +699,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show game over screen
     function showGameOverScreen() {
+        console.log("Showing game over screen");
         // Generate final stats
         finalStatsElement.innerHTML = `
             <h3>Final Stats</h3>
@@ -697,7 +726,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h4>Mutations</h4>
                 <ul class="final-stat-list">
                     ${gameState.player.mutations.map(mutation => 
-                        `<li>${mutation.name}: ${mutation.description}</li>`
+                        `<li>${mutation.name}: ${mutation.description || ''}</li>`
                     ).join('')}
                 </ul>
             </div>
@@ -707,26 +736,46 @@ document.addEventListener('DOMContentLoaded', function() {
         gameOverElement.classList.remove('hidden');
         
         // Submit score to leaderboard
-        submitScore(gameState.player.nickname, gameState.round)
-            .then(() => {
-                console.log('Score submitted successfully!');
-            })
-            .catch(error => {
-                console.error('Error submitting score:', error);
-            });
+        try {
+            submitScore(gameState.player.nickname, gameState.round)
+                .then(() => {
+                    console.log('Score submitted successfully!');
+                })
+                .catch(error => {
+                    console.error('Error submitting score:', error);
+                });
+        } catch (error) {
+            console.error('Error during score submission:', error);
+        }
     }
     
     // Setup event listeners
     function setupEventListeners() {
+        console.log("Setting up event listeners...");
+        
         // Player action buttons
-        attackButton.addEventListener('click', playerAttack);
-        defendButton.addEventListener('click', playerDefend);
-        specialButton.addEventListener('click', playerSpecial);
+        attackButton.addEventListener('click', function() {
+            console.log("Attack button clicked");
+            playerAttack();
+        });
+        
+        defendButton.addEventListener('click', function() {
+            console.log("Defend button clicked");
+            playerDefend();
+        });
+        
+        specialButton.addEventListener('click', function() {
+            console.log("Special button clicked");
+            playerSpecial();
+        });
         
         // Return to menu button
         returnToMenuButton.addEventListener('click', () => {
+            console.log("Return to menu button clicked");
             window.location.href = 'index.html';
         });
+        
+        console.log("Event listeners set up!");
     }
     
     // Initialize the game

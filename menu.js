@@ -121,11 +121,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Find the selected passive
         const selectedPassive = randomPassives.find(p => p.id === selectedPassiveId);
+        console.log("Selected passive:", selectedPassive);
+        
+        if (!selectedPassive) {
+            console.error("Selected passive not found!");
+            return;
+        }
         
         // Store game data in sessionStorage to pass to game.html
         const gameData = {
             nickname: nickname,
-            selectedPassive: selectedPassive,
+            selectedPassive: {
+                id: selectedPassive.id,
+                name: selectedPassive.name,
+                description: selectedPassive.description,
+                effect: selectedPassive.effect.toString(), // Convert function to string
+                type: selectedPassive.type
+            },
             gameStarted: true
         };
         
