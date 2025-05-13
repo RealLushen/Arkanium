@@ -949,3 +949,55 @@ footer {
     max-width: 200px;
     font-size: 0.8rem;
 }
+
+/* Loading animation styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease-in-out;
+}
+
+.loading-logo {
+    max-width: 350px;
+    height: auto;
+}
+
+.loading-logo.pulsate {
+    animation: logo-pulsate 0.8s ease-in-out;
+}
+
+@keyframes logo-pulsate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.move-to-header {
+    transform: translateY(-40vh) scale(0.6);
+}
+
+/* Ensure main container has transition */
+.container {
+    transition: opacity 0.8s ease-in-out;
+}
