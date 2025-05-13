@@ -1,4 +1,32 @@
-/* Additional aggressive fix for containers */
+.materials-gained, .overlay-content {
+    background-color: rgba(42, 38, 36, 0.95) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(8px);
+}
+
+.mutation-option {
+    background-color: rgba(52, 46, 42, 0.95) !important;
+    border: 2px solid var(--border-color);
+    backdrop-filter: blur(4px);
+}
+
+.mutation-option:hover {
+    background-color: rgba(255, 140, 0, 0.15) !important;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}.battle-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(42, 38, 36, 0.95) !important;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(4px);
+}/* Additional aggressive fix for containers */
 .main-menu .weapon-display,
 .main-menu .materials-container,
 .main-menu .upgrade-section {
@@ -60,6 +88,7 @@ body {
 h1, h2, h3 {
     margin-bottom: 0.5rem;
     color: var(--primary-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 button {
@@ -71,15 +100,18 @@ button {
     border-radius: 4px;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 button:hover:not(:disabled) {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 button:active:not(:disabled) {
     transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 button:disabled {
@@ -97,6 +129,7 @@ input {
     margin-bottom: 1rem;
     background-color: var(--input-bg);
     color: var(--text-color);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .secondary-btn {
@@ -487,16 +520,18 @@ input, select, textarea, table, tr, td, th {
     border-color: var(--border-color);
 }
 
-/* Battle Section */
-.battle-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--container-bg);
+.battle-section, .mutations-section, .battle-log-section, .actions-section {
+    background-color: rgba(42, 38, 36, 0.95) !important;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border-color);
+    backdrop-filter: blur(4px);
+}
+
+.weapon-display, .materials-container, .upgrade-section {
+    background-color: rgba(52, 46, 42, 0.95) !important;
+    backdrop-filter: blur(4px);
 }
 
 .player-container, .enemy-container {
