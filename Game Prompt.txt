@@ -1,0 +1,112 @@
+You are a game developer coding me a browser-based turn-based RPG game using HTML, CSS, and JavaScript. The game is called "Arkanium". Core Concept:
+
+- The player has a Axe on the Main Menu (index.html) which he needs to constantly upgrade more and more through collecting materials ingame (game.html)
+- Each round a new Monster spawns which can randomly drop materials to upgrade the sword in the main menu.
+- The Sword from the Main Menu is the weapon of the Player, depending on how much its upgraded, attacks in the game are stronger
+- The goal is to survive as many rounds as possible ingame
+- The player can do 5 things ingame via Buttons: Attack, which is always attacking with the damage of the weapon he upgrades in the Main Menu, Defend: Which will block 75% of the incoming damage of the next attack of the enemy,
+Heal: Which heals the player for 10 Life, Mana Replenish: Which restores full mana but ends his turn and End Turn: Which will end the players turn.
+- Each Ability (Button) costs Mana, the Player Starts with 100 Life and 50 Mana. Attack costs 15 Mana, Defend costs 20 Mana and Heal costs 15 Mana.
+- After each 3 wins ingame, the player must pick one of three randomly offered mutatations, which alter stats, abilities or rules, sometimes positive, sometimes negative, somtimes neutral.
+- All Enemies which the player face are randomly drawn from a pool of enemies which are constantly getting stronger. These monsters spawn in difficulty based on how many rounds he has won.
+
+Please implement the following features:
+
+1. Start Screen (Main Menu)
+
+- Input field for the player to enter a nickname (required to start the game).
+- A "Start a Run" Button to start the game
+- Display a Firebase-based leaderboard showing the top 10 scores (nickname + rounds survived + weapon upgrade level)
+- A Menu/Area for Upgrading the Players weapon which he uses ingame. (Store the progress of the players upgraded weapon in localStorage)
+- In this Menu/Area, the player sees the materials he collected in his runs, his weapon displayed with level, base damage, bonus level through upgrading it etc. The Axe should also have a small Description describing the weapon in a fantasy way.
+- Make the Menu/place where the player upgrades his weapons advanced and well structurized, so its easy to understand how to upgrade the weapon.
+
+2. Weapon Upgrade System
+
+- In the Main Menu (index.html) - as already described - is a container/area where the player upgrades his weapon, which he uses inside the game.
+- This weapon can be upgraded with three different materials the player can randomly get dropped by monsters inside the game.
+- The materials are "Gold Coins", "Iron Bars" and "Titanium Bars".
+- In the beginning the first upgrades cost only Gold Coins, then later it costs Gold Coins and Iron Bars, then even more later it costs Gold Coins, Iron Bars and Titanium Bars.
+- The weapon should be endlessless upgradable, always increasing the attack damage of the weapon a little more, so the player can progressively kill more enemies in his runs in the game.
+- Maybe even add animations when the player clicks "Upgrade Weapon" if he has enough materials.
+- The Weapon always make a range of damage for example on Level 1 it makes randomly between 2-5 Damage. Increasing more and more with more upgrades
+
+3. UI Layout
+
+- Once the game (game.html) starts show a battle arena layout:
+- Display Helath bars, mana bars and Players Damage Range, Enemies Damage Range, Monsters Survived (Rounds) and list the currently active mutations
+- Player Actions: Attack, Defend, Heal, Replenish Mana & End Turn
+- Enemies perform random actions each turn and deal damage as displayed in the Damage range below the Enemy.
+- Player should have a Player Avatar, Monsters should also have Avatars, which I all later add in the assets folder, fitting to all monsters and the player.
+- The Action Buttons should all have fitting emojis.
+
+4. Resources
+
+- Player Starts with 100 HP and 50 Mana
+
+5. Combat System
+
+- Turn-based structure: player and enemy alternate turns.
+- Each action applies damage or effects based on stats of his upgraded weapon & random mutations, if some are active.
+- Players can perform as many actions as they have mana this turn
+- All actions the player performs cost mana like described in the core concept above.
+- The Player HP and Mana does NOT scale with higher rounds / more enemies killed. It for now only be altered by random mutations.
+
+6. Mutation System
+
+-After each 3 victories, generate 3 unique mutation options
+- Each Mutation includes:
+ - Name
+ - Description
+ - Gameplay Effects (e.g. 5% more Damage, Reflect Damage, Thorns, Poision Attack, 10% Lifesteal etc.)
+- Player selects one; its effect is applied immediately
+- Maintain a visible mutation log panel with all active mutations
+
+7. Enemy Generator
+
+- Generate random Enemies from the Enemy Pool (enemies.js) based on the current rounds won / enemies defeated. They gradually get stronger with each round he defeated a enemy.
+ - For Example from Round 1-10 a random monster of a pool can spawn, from Round 11-15 a random monster of a pool can spawn, from 16-25 etc. the game should be endless or until the player dies.
+ - Enemies can have special Traits (if I set that in the config manually) so also generate a list of traits monsters can have so I can apply them to different monsters, if I want.
+ - Status Effects are displayed below the Enemie and Player Avatar and are hoverable with description, how long it still lasts and what it does
+
+ 8. Progress & End
+
+ - Track Rounds Survived / Enemies Defeated in the TOP of the UI ingame.
+ - Monsters Spawn based on Rounds Survived / Enemies Defeated as described above under "7. Enemy Generator"
+ - When the player dies:
+  - Show a "Game Over" Screen with finals stats and mutation history.
+  - Submit the Players nickname, rounds survived / enemies defeated & upgrade level of their weapon to the firebase leaderboard in the main menu.
+  - Allow starting a new round from the main menu
+
+
+9. Material Drops
+
+- Materials (Gold Coins, Iron Bars & Titanium Bars) should have random percentage drop chances.
+- Gold Coins can Drop from Monsters across all difficulties, Copper should drop a little later and Titanium Bars in End-Game. (Make it so it makes sense based on Upgraded Weapon level and Damage needed to actually win against enemies, with the possibility to also be able to lose sometimes and go game over)
+- These Materials get tracked ingame and also in the Main Menu. In the Main Menu is where players upgrade their weapon.
+
+10. Visual Design
+
+- Use a minimalist but modern RPG Style UI, make it in light orange / orange colors
+- Use Emojis everywhere where its fitting so the design looks good and modern.
+- Keep everything responsive and clean using only HTML, CSS and JavaScript
+- No external libraries or frameworks (for now) unless necessary for Firebase
+
+11. Code Requirements:
+- Write clean, modular JavaScript code with functions split logically (Combat, UI, Mutation Logic, Firebase Function, Upgrade System etc.)
+- Add inline comments to explain key sections for easier future expansion
+- All logic runs client-side (except for the firebase backend)
+- Store player data in local variables unless saving is needed
+- Also split up the Main Menu from the game, so make the Main Menu (index.html) and the Game (game.html)
+
+11. Firebase Integration
+- Use Firebase Realtime Database to:
+ - Store the top 10 leaderboard entries.
+ - Allow new scores to be submitted only if a nickname is entered.
+ - Load and display the leaderboard on the main menu.
+ - Ensure secure and minimal Firebase rules (no authentication required, just writing and reading scores).
+
+ Once the core version is working, we can expand it further with new monsters, more mutations, sound effects, animations etc.
+
+
+ PLEASE, while you code. Make a Break after each file you coded. So you don't hit your Message Length Limit. We will continue with the next file after I wrote "Continue".

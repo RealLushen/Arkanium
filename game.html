@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkanium - Battle Arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="game-screen">
+    <div class="game-container">
+        <header class="game-header">
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-label">Rounds:</span>
+                    <span id="rounds-survived">0</span>
+                </div>
+            </div>
+            <h1>Arkanium</h1>
+            <div class="home-btn-container">
+                <button id="home-btn" class="secondary-btn">Main Menu 🏠</button>
+            </div>
+        </header>
+
+        <main class="battle-arena">
+            <div class="battle-section">
+                <div class="player-container">
+                    <div class="character-avatar">
+                        <span class="avatar-placeholder">🧙</span>
+                    </div>
+                    <div class="character-info">
+                        <h3 id="player-name">Player</h3>
+                        <div class="hp-container">
+                            <div class="hp-label">HP:</div>
+                            <div class="hp-bar-container">
+                                <div id="player-hp-bar" class="hp-bar"></div>
+                            </div>
+                            <div id="player-hp-text">100/100</div>
+                        </div>
+                        <div class="mana-container">
+                            <div class="mana-label">Mana:</div>
+                            <div class="mana-bar-container">
+                                <div id="player-mana-bar" class="mana-bar"></div>
+                            </div>
+                            <div id="player-mana-text">50/50</div>
+                        </div>
+                        <div class="damage-range">
+                            <span class="damage-label">Damage:</span>
+                            <span id="player-damage">2-5</span>
+                        </div>
+                        <div id="player-status-effects" class="status-effects"></div>
+                    </div>
+                </div>
+
+                <div class="vs-indicator">VS</div>
+
+                <div class="enemy-container">
+                    <div class="character-avatar">
+                        <span id="enemy-emoji" class="avatar-placeholder">👹</span>
+                    </div>
+                    <div class="character-info">
+                        <h3 id="enemy-name">Monster</h3>
+                        <div class="hp-container">
+                            <div class="hp-label">HP:</div>
+                            <div class="hp-bar-container">
+                                <div id="enemy-hp-bar" class="hp-bar"></div>
+                            </div>
+                            <div id="enemy-hp-text">100/100</div>
+                        </div>
+                        <div class="damage-range">
+                            <span class="damage-label">Damage:</span>
+                            <span id="enemy-damage">1-3</span>
+                        </div>
+                        <div id="enemy-status-effects" class="status-effects"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mutations-section">
+                <h3>Active Mutations 🧬</h3>
+                <div id="active-mutations" class="mutations-list">
+                    <p class="no-mutations">No active mutations yet</p>
+                </div>
+            </div>
+
+            <div class="battle-log-section">
+                <h3>Battle Log 📜</h3>
+                <div id="battle-log" class="battle-log"></div>
+            </div>
+
+            <div class="actions-section">
+                <h3>Actions</h3>
+                <div class="action-buttons">
+                    <button id="attack-btn" class="action-btn">Attack ⚔️<span class="mana-cost">15 💧</span></button>
+                    <button id="defend-btn" class="action-btn">Defend 🛡️<span class="mana-cost">20 💧</span></button>
+                    <button id="heal-btn" class="action-btn">Heal ❤️<span class="mana-cost">15 💧</span></button>
+                    <button id="replenish-btn" class="action-btn">Replenish Mana 💧<span class="mana-cost">0 💧</span></button>
+                    <button id="end-turn-btn" class="action-btn secondary-btn">End Turn ⏩</button>
+                </div>
+            </div>
+
+            <div id="materials-gained" class="materials-gained hidden">
+                <h3>Materials Gained</h3>
+                <div class="materials-list"></div>
+                <button id="continue-btn">Continue</button>
+            </div>
+        </main>
+
+        <!-- Mutation selection overlay -->
+        <div id="mutation-overlay" class="overlay hidden">
+            <div class="overlay-content">
+                <h2>Choose a Mutation</h2>
+                <p>Select one of the following mutations:</p>
+                <div id="mutation-options" class="mutation-options">
+                    <!-- Mutation options will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Game over overlay -->
+        <div id="game-over-overlay" class="overlay hidden">
+            <div class="overlay-content">
+                <h2>Game Over</h2>
+                <div id="game-over-stats" class="game-over-stats">
+                    <!-- Game over stats will be dynamically inserted here -->
+                </div>
+                <button id="return-btn">Return to Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    
+    <script src="firebase.js"></script>
+    <script src="enemies.js"></script>
+    <script src="mutations.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

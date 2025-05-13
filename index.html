@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkanium - Upgrade Your Axe and Slay Monsters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="main-menu">
+    <div class="container">
+        <header>
+            <h1>Arkanium</h1>
+            <p>Upgrade your axe, slay monsters, survive the onslaught</p>
+        </header>
+
+        <main>
+            <div class="player-section">
+                <div class="nickname-section">
+                    <h2>Enter Your Name</h2>
+                    <input type="text" id="nickname-input" placeholder="Your nickname..." maxlength="15">
+                    <button id="start-game-btn" disabled>Start a Run ⚔️</button>
+                </div>
+            </div>
+
+            <div class="weapon-section">
+                <h2>Weapon Forge 🔨</h2>
+                <div class="weapon-display">
+                    <div class="weapon-image">
+                        <span class="weapon-emoji">🪓</span>
+                    </div>
+                    <div class="weapon-info">
+                        <h3 id="weapon-name">Rusty Axe</h3>
+                        <p id="weapon-description">A weathered axe that has seen better days. Despite its rust, it's still sharp enough to cut through flesh.</p>
+                        <div class="weapon-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Level:</span>
+                                <span id="weapon-level">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Damage:</span>
+                                <span id="weapon-damage">2-5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="materials-container">
+                    <h3>Materials</h3>
+                    <div class="materials">
+                        <div class="material">
+                            <span class="material-emoji">🪙</span>
+                            <span class="material-name">Gold Coins:</span>
+                            <span id="gold-coins">0</span>
+                        </div>
+                        <div class="material">
+                            <span class="material-emoji">🧱</span>
+                            <span class="material-name">Iron Bars:</span>
+                            <span id="iron-bars">0</span>
+                        </div>
+                        <div class="material">
+                            <span class="material-emoji">⬜</span>
+                            <span class="material-name">Titanium Bars:</span>
+                            <span id="titanium-bars">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="upgrade-section">
+                    <h3>Weapon Upgrades</h3>
+                    <div class="upgrade-info">
+                        <p>Upgrade your axe to increase its damage and survive longer in battle!</p>
+                        <div id="upgrade-cost">
+                            <span>Next upgrade requires:</span>
+                            <div class="cost-items">
+                                <div class="cost-item">
+                                    <span class="material-emoji">🪙</span>
+                                    <span id="cost-gold">5</span>
+                                </div>
+                                <div class="cost-item hidden" id="cost-iron-container">
+                                    <span class="material-emoji">🧱</span>
+                                    <span id="cost-iron">0</span>
+                                </div>
+                                <div class="cost-item hidden" id="cost-titanium-container">
+                                    <span class="material-emoji">⬜</span>
+                                    <span id="cost-titanium">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="upgrade-btn" disabled>Upgrade Weapon 🔨</button>
+                </div>
+            </div>
+
+            <div class="leaderboard-section">
+                <h2>Leaderboard 🏆</h2>
+                <div class="leaderboard-container">
+                    <table id="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Player</th>
+                                <th>Rounds</th>
+                                <th>Weapon Lvl</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <tr>
+                                <td colspan="4">Loading leaderboard...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 Arkanium RPG</p>
+        </footer>
+    </div>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    
+    <script src="firebase.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
