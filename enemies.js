@@ -418,7 +418,7 @@ const ENEMY_POOLS = {
         },
         {
             name: "Dark Overlord",
-            emoji: "👑",
+            emoji: "🎩",
             minHp: 300,
             maxHp: 400,
             minDamage: 45,
@@ -429,6 +429,21 @@ const ENEMY_POOLS = {
             ironDropAmount: {min: 25, max: 40},
             titaniumDropChance: 1.0,
             titaniumDropAmount: {min: 10, max: 15},
+            possibleTraits: ["ARMORED", "REFLECTIVE", "VAMPIRIC", "ENRAGED", "SWIFT"]
+        },
+        {
+            name: "Ryouhou",
+            emoji: "👑",
+            minHp: 300,
+            maxHp: 600,
+            minDamage: 35,
+            maxDamage: 70,
+            goldDropChance: 1.0,
+            goldDropAmount: {min: 60, max: 150},
+            ironDropChance: 1.0,
+            ironDropAmount: {min: 25, max: 45},
+            titaniumDropChance: 1.0,
+            titaniumDropAmount: {min: 10, max: 20},
             possibleTraits: ["ARMORED", "REFLECTIVE", "VAMPIRIC", "ENRAGED", "SWIFT"]
         }
     ]
