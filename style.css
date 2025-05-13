@@ -83,6 +83,22 @@ input {
     display: none !important;
 }
 
+/* Direct fixes for specific elements */
+.main-menu .player-section {
+    background-color: var(--container-bg) !important;
+    color: var(--text-color);
+}
+
+.main-menu .weapon-section {
+    background-color: var(--container-bg) !important;
+    color: var(--text-color);
+}
+
+.main-menu .leaderboard-section {
+    background-color: var(--container-bg) !important;
+    color: var(--text-color);
+}
+
 /* Main Menu Styles */
 .main-menu .container {
     max-width: 1200px;
