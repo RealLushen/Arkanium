@@ -102,7 +102,7 @@ input {
 
 .main-menu main {
     display: grid;
-    grid-template-columns: 1fr 2.2fr 1.2fr;
+    grid-template-columns: 1fr 2.2fr 2fr;
     gap: 2rem;
 }
 
@@ -315,8 +315,7 @@ input {
 
 /* Leaderboard Section */
 .leaderboard-container {
-    overflow-y: auto;
-    max-height: 400px;
+    height: 100%;
 }
 
 #leaderboard-table {
