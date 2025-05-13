@@ -279,27 +279,9 @@ function getRandomMutations(count = 3, alreadyActiveMutationIds = []) {
     // Filter out mutations that are already active
     const availableMutations = MUTATIONS.filter(mutation => !alreadyActiveMutationIds.includes(mutation.id));
     
-    // Shuffle the array
+    // Simple random selection without category consideration
     const shuffledMutations = [...availableMutations].sort(() => Math.random() - 0.5);
     
-    // Get a balanced set of mutations (try to include at least one of each category if possible)
-    const positiveMutations = shuffledMutations.filter(m => m.category === MUTATION_CATEGORIES.POSITIVE);
-    const negativeMutations = shuffledMutations.filter(m => m.category === MUTATION_CATEGORIES.NEGATIVE);
-    const neutralMutations = shuffledMutations.filter(m => m.category === MUTATION_CATEGORIES.NEUTRAL);
-    
-    let result = [];
-    
-    // Try to include one of each category
-    if (positiveMutations.length > 0) result.push(positiveMutations[0]);
-    if (negativeMutations.length > 0) result.push(negativeMutations[0]);
-    if (neutralMutations.length > 0) result.push(neutralMutations[0]);
-    
-    // If we still need more mutations, add random ones from the remaining pool
-    const remainingMutations = shuffledMutations.filter(m => !result.includes(m));
-    while (result.length < count && remainingMutations.length > 0) {
-        result.push(remainingMutations.shift());
-    }
-    
-    // Shuffle the final selection to avoid predictable ordering
-    return result.sort(() => Math.random() - 0.5).slice(0, count);
+    // Return the requested number of mutations (or all available if less than requested)
+    return shuffledMutations.slice(0, count);
 }
