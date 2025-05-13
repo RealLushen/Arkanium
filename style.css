@@ -95,8 +95,13 @@ input {
     margin-bottom: 2rem;
 }
 
+.weapon-description {
+    color: #bbb;
+}
+
 .logo-container {
     margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
 }
 
 .game-logo {
@@ -212,6 +217,31 @@ input {
 #view-all-patches-btn {
     width: 100%;
     margin-top: 0.5rem;
+    background-color: #5a4d43;
+}
+
+#view-all-patches-btn:hover {
+    background-color: #755e4e;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--input-bg);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-dark);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
 }
 
 /* Weapon Section */
@@ -403,6 +433,14 @@ footer {
 .game-header-logo {
     max-width: 180px;
     height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* Reset any remaining white backgrounds */
+input, select, textarea, table, tr, td, th {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
 }
 
 /* Battle Section */
