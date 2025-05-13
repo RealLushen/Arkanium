@@ -1,75 +1,21 @@
-.materials-gained, .overlay-content {
-    background-color: rgba(42, 38, 36, 0.95) !important;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(8px);
-}
-
-.mutation-option {
-    background-color: rgba(52, 46, 42, 0.95) !important;
-    border: 2px solid var(--border-color);
-    backdrop-filter: blur(4px);
-}
-
-.mutation-option:hover {
-    background-color: rgba(255, 140, 0, 0.15) !important;
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}.battle-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(42, 38, 36, 0.95) !important;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(4px);
-}/* Additional aggressive fix for containers */
-.main-menu .weapon-display,
-.main-menu .materials-container,
-.main-menu .upgrade-section {
-    background-color: var(--input-bg) !important;
-    color: var(--text-color) !important;
-}
-
-.main-menu .material,
-.main-menu #upgrade-cost {
-    background-color: rgba(255, 140, 0, 0.1) !important;
-    color: var(--text-color) !important;
-}
-
-.main-menu .cost-item {
-    background-color: var(--container-bg) !important;
-    color: var(--text-color) !important;
-}
-
-/* Force-set backgrounds on possible nested elements */
-.main-menu div, .main-menu p, .main-menu span {
-    background-color: transparent;
-    color: var(--text-color);
-}
-
-/* Remove potential background images that might be interfering */
-.main-menu div {
-    background-image: none !important;
-}/* Global Styles */
+/* Global Styles */
 :root {
-    --primary-color: #ff8c00;
-    --primary-light: #ffb266;
-    --primary-dark: #cc7000;
-    --secondary-color: #ff6b00;
-    --background-color: #1e1a17;
-    --container-bg: #2a2624;
-    --text-color: #ffda9e;
-    --border-color: #3d3533;
-    --success-color: #4caf50;
-    --danger-color: #f44336;
-    --hp-color: #f44336;
-    --mana-color: #2196f3;
-    --overlay-bg: rgba(0, 0, 0, 0.8);
-    --input-bg: #342e2a;
+    --primary-color: #ff8c00;           /* Orange */
+    --primary-light: #ffa533;           /* Light Orange */
+    --primary-dark: #cc7000;            /* Dark Orange */
+    --secondary-color: #ff6b00;         /* Bright Orange */
+    --background-color: #1e1610;        /* Very Dark Brown */
+    --text-color: #ffe6cc;              /* Light Orange Text */
+    --border-color: #3d2e21;            /* Medium Brown */
+    --success-color: #5cb85c;           /* Keep Success Green */
+    --danger-color: #ff6b6b;            /* Reddish Orange */
+    --hp-color: #ff6b6b;                /* Reddish Orange */
+    --mana-color: #4db8ff;              /* Keep Blue for contrast */
+    --overlay-bg: rgba(0, 0, 0, 0.8);   /* Darker Overlay */
+    --container-bg: #2c1e14;            /* Dark Brown */
+    --card-bg: #342318;                 /* Slightly Lighter Brown */
+    --highlight-bg: #3d2e21;            /* Medium Brown Highlight */
+    --input-bg: #261a10;                /* Dark Input Background */
 }
 
 * {
@@ -82,40 +28,39 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--background-color);
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 h1, h2, h3 {
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: var(--primary-light);
 }
 
 button {
     cursor: pointer;
     background-color: var(--primary-color);
-    color: var(--text-color);
+    color: white;
     border: none;
     padding: 0.8rem 1.5rem;
     border-radius: 4px;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 button:hover:not(:disabled) {
     background-color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 button:active:not(:disabled) {
     transform: translateY(1px);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 button:disabled {
-    background-color: #555;
+    background-color: #614231;
     cursor: not-allowed;
     opacity: 0.7;
 }
@@ -129,35 +74,18 @@ input {
     margin-bottom: 1rem;
     background-color: var(--input-bg);
     color: var(--text-color);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .secondary-btn {
-    background-color: #666;
+    background-color: #614231; /* Brownish */
 }
 
 .secondary-btn:hover {
-    background-color: #555;
+    background-color: #78523d; /* Lighter Brown */
 }
 
 .hidden {
     display: none !important;
-}
-
-/* Direct fixes for specific elements */
-.main-menu .player-section {
-    background-color: var(--container-bg) !important;
-    color: var(--text-color);
-}
-
-.main-menu .weapon-section {
-    background-color: var(--container-bg) !important;
-    color: var(--text-color);
-}
-
-.main-menu .leaderboard-section {
-    background-color: var(--container-bg) !important;
-    color: var(--text-color);
 }
 
 /* Main Menu Styles */
@@ -172,13 +100,8 @@ input {
     margin-bottom: 2rem;
 }
 
-.weapon-description {
-    color: #bbb;
-}
-
 .logo-container {
     margin-bottom: 1rem;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
 }
 
 .game-logo {
@@ -199,10 +122,10 @@ input {
 }
 
 .player-section, .weapon-section, .leaderboard-section {
-    background-color: white;
+    background-color: var(--container-bg);
     border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Nickname Section */
@@ -217,7 +140,7 @@ input {
 
 #nickname-input.invalid {
     border-color: var(--danger-color);
-    background-color: rgba(244, 67, 54, 0.2);
+    background-color: rgba(244, 67, 54, 0.1);
 }
 
 #start-game-btn {
@@ -244,7 +167,7 @@ input {
     margin-bottom: 1rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: var(--input-bg);
+    background-color: var(--card-bg);
 }
 
 .patch-note {
@@ -274,7 +197,7 @@ input {
 }
 
 .patch-date {
-    color: #bbb;
+    color: #ffc78a;
     font-size: 0.9rem;
     font-style: italic;
 }
@@ -282,7 +205,6 @@ input {
 .patch-changes {
     margin: 0;
     padding-left: 1.5rem;
-    color: #ddd;
 }
 
 .patch-changes li {
@@ -294,31 +216,6 @@ input {
 #view-all-patches-btn {
     width: 100%;
     margin-top: 0.5rem;
-    background-color: #5a4d43;
-}
-
-#view-all-patches-btn:hover {
-    background-color: #755e4e;
-}
-
-/* Scrollbars */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--input-bg);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary-dark);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-color);
 }
 
 /* Weapon Section */
@@ -329,7 +226,7 @@ input {
     padding: 1rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--card-bg);
 }
 
 .weapon-emoji {
@@ -363,7 +260,7 @@ input {
     padding: 1rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--card-bg);
 }
 
 .materials {
@@ -375,10 +272,10 @@ input {
 .material {
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: var(--highlight-bg);
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .material-emoji {
@@ -396,7 +293,7 @@ input {
     padding: 1rem;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--card-bg);
 }
 
 .upgrade-info {
@@ -406,9 +303,9 @@ input {
 #upgrade-cost {
     margin-top: 1rem;
     padding: 0.8rem;
-    background-color: white;
+    background-color: var(--highlight-bg);
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .cost-items {
@@ -420,7 +317,7 @@ input {
 .cost-item {
     display: flex;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: var(--container-bg);
     padding: 0.5rem;
     border-radius: 4px;
 }
@@ -448,19 +345,19 @@ input {
 }
 
 #leaderboard-table th {
-    background-color: var(--primary-light);
+    background-color: var(--primary-dark);
     color: white;
 }
 
 #leaderboard-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: var(--highlight-bg);
 }
 
 /* Footer */
 footer {
     text-align: center;
     margin-top: 2rem;
-    color: #777;
+    color: #ffc78a;
 }
 
 /* Game Screen Styles */
@@ -510,28 +407,17 @@ footer {
 .game-header-logo {
     max-width: 180px;
     height: auto;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
 }
 
-/* Reset any remaining white backgrounds */
-input, select, textarea, table, tr, td, th {
-    background-color: var(--input-bg);
-    color: var(--text-color);
-    border-color: var(--border-color);
-}
-
-.battle-section, .mutations-section, .battle-log-section, .actions-section {
-    background-color: rgba(42, 38, 36, 0.95) !important;
+/* Battle Section */
+.battle-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--container-bg);
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(4px);
-}
-
-.weapon-display, .materials-container, .upgrade-section {
-    background-color: rgba(52, 46, 42, 0.95) !important;
-    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .player-container, .enemy-container {
@@ -552,11 +438,10 @@ input, select, textarea, table, tr, td, th {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--input-bg);
+    background-color: var(--highlight-bg);
     border-radius: 50%;
     margin-right: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .avatar-placeholder {
@@ -574,17 +459,15 @@ input, select, textarea, table, tr, td, th {
 .hp-label, .mana-label {
     font-weight: bold;
     margin-bottom: 0.2rem;
-    color: #bbb;
 }
 
 .hp-bar-container, .mana-bar-container {
     width: 100%;
     height: 12px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--container-bg);
     border-radius: 6px;
     overflow: hidden;
     margin-bottom: 0.2rem;
-    border: 1px solid var(--border-color);
 }
 
 .hp-bar {
@@ -604,7 +487,6 @@ input, select, textarea, table, tr, td, th {
 .damage-range {
     font-size: 0.9rem;
     margin-top: 0.5rem;
-    color: #bbb;
 }
 
 .status-effects {
@@ -616,19 +498,18 @@ input, select, textarea, table, tr, td, th {
 
 .status-effect {
     padding: 0.3rem 0.5rem;
-    background-color: rgba(255, 140, 0, 0.1);
+    background-color: var(--highlight-bg);
     border-radius: 4px;
     font-size: 0.8rem;
     display: flex;
     align-items: center;
     cursor: help;
     position: relative;
-    border: 1px solid rgba(255, 140, 0, 0.3);
 }
 
 .shield-effect {
     background-color: rgba(33, 150, 243, 0.2);
-    border: 1px solid rgba(33, 150, 243, 0.4);
+    border: 1px solid rgba(33, 150, 243, 0.6);
     font-weight: bold;
 }
 
@@ -644,7 +525,6 @@ input, select, textarea, table, tr, td, th {
     border-radius: 4px;
     white-space: nowrap;
     z-index: 10;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Mutations Section */
@@ -653,7 +533,6 @@ input, select, textarea, table, tr, td, th {
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border-color);
 }
 
 .mutations-list {
@@ -663,13 +542,12 @@ input, select, textarea, table, tr, td, th {
 }
 
 .mutation-item {
-    background-color: rgba(255, 140, 0, 0.1);
+    background-color: var(--highlight-bg);
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-size: 0.9rem;
     cursor: help;
     position: relative;
-    border: 1px solid rgba(255, 140, 0, 0.3);
 }
 
 .mutation-item:hover::after {
@@ -686,11 +564,10 @@ input, select, textarea, table, tr, td, th {
     z-index: 10;
     width: max-content;
     max-width: 300px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .no-mutations {
-    color: #bbb;
+    color: #ffc78a;
     font-style: italic;
 }
 
@@ -700,14 +577,13 @@ input, select, textarea, table, tr, td, th {
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border-color);
 }
 
 .battle-log {
     height: 150px;
     overflow-y: auto;
     padding: 0.8rem;
-    background-color: var(--input-bg);
+    background-color: var(--card-bg);
     border-radius: 4px;
     border: 1px solid var(--border-color);
 }
@@ -717,15 +593,15 @@ input, select, textarea, table, tr, td, th {
 }
 
 .player-action {
-    color: #4da6ff;
+    color: #66b3ff;
 }
 
 .enemy-action {
-    color: #ff6666;
+    color: #ff8080;
 }
 
 .system-message {
-    color: #66cc66;
+    color: #80ff80;
     font-weight: bold;
 }
 
@@ -735,7 +611,6 @@ input, select, textarea, table, tr, td, th {
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border-color);
     display: flex;
     justify-content: center;
 }
@@ -763,8 +638,7 @@ input, select, textarea, table, tr, td, th {
     background-color: var(--container-bg);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     z-index: 100;
     width: 400px;
     max-width: 90%;
@@ -783,10 +657,9 @@ input, select, textarea, table, tr, td, th {
     align-items: center;
     justify-content: center;
     gap: 0.8rem;
-    background-color: rgba(255, 140, 0, 0.1);
+    background-color: var(--card-bg);
     padding: 0.8rem;
     border-radius: 4px;
-    border: 1px solid rgba(255, 140, 0, 0.3);
 }
 
 #continue-btn {
@@ -811,8 +684,7 @@ input, select, textarea, table, tr, td, th {
     background-color: var(--container-bg);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     width: 600px;
     max-width: 90%;
 }
@@ -831,13 +703,12 @@ input, select, textarea, table, tr, td, th {
     border-radius: 8px;
     cursor: pointer;
     transition: border-color 0.3s, transform 0.2s;
-    background-color: var(--input-bg);
+    background-color: var(--card-bg);
 }
 
 .mutation-option:hover {
     border-color: var(--primary-color);
     transform: translateY(-2px);
-    background-color: rgba(255, 140, 0, 0.1);
 }
 
 .mutation-option h3 {
@@ -849,9 +720,8 @@ input, select, textarea, table, tr, td, th {
 .game-over-stats {
     margin: 1.5rem 0;
     padding: 1rem;
-    background-color: var(--input-bg);
+    background-color: var(--card-bg);
     border-radius: 8px;
-    border: 1px solid var(--border-color);
 }
 
 .game-over-stats div {
@@ -866,7 +736,6 @@ input, select, textarea, table, tr, td, th {
 
 .stats-item-label {
     font-weight: bold;
-    color: #bbb;
 }
 
 #return-btn {
