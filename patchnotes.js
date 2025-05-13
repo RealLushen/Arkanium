@@ -1,13 +1,13 @@
 // Patch notes data
 const PATCH_NOTES = [
     {
-        version: "0.0.1",
-        date: "May 13, 2025",
+        version: "0.0.1 - Alpha",
+        date: "May 5, 2025",
         changes: [
-            "Initial Alpha Build Released",
-            "Implemented Functional Axe Upgrades",
-            "Implemented Materials System to Upgrade Axe",
-            "Implemented first Enemies and Mutations"
+            "Initial Alpha Build Release",
+            "Implemented Enemy Battle Logic",
+            "Implemented Scripts for Axe Upgrading",
+            "Implemented Mutation System"
         ]
     }
 ];
@@ -38,11 +38,11 @@ function displayPatchNotes(elementId, count = 3) {
         const headerElement = document.createElement('div');
         headerElement.className = 'patch-header';
         
-        const versionElement = document.createElement('span');
+        const versionElement = document.createElement('div');
         versionElement.className = 'patch-version';
         versionElement.textContent = `v${patch.version}`;
         
-        const dateElement = document.createElement('span');
+        const dateElement = document.createElement('div');
         dateElement.className = 'patch-date';
         dateElement.textContent = patch.date;
         

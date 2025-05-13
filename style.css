@@ -134,6 +134,76 @@ input {
     margin: 0 auto;
 }
 
+/* Nickname Section */
+.nickname-section {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+/* Patch Notes Section */
+.patch-notes-section {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+.patch-notes-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.patch-note {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.patch-note:last-child {
+    border-bottom: none;
+}
+
+.patch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+}
+
+.patch-version {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-right: 1rem;
+    padding: 0.2rem 0.5rem;
+    background-color: rgba(255, 140, 0, 0.1);
+    border-radius: 4px;
+}
+
+.patch-date {
+    color: #777;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.patch-changes {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.patch-changes li {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+#view-all-patches-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
 /* Weapon Section */
 .weapon-display {
     display: flex;
