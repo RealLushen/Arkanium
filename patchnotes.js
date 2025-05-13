@@ -1,6 +1,15 @@
 // Patch notes data
 const PATCH_NOTES = [
     {
+        version: "0.0.3",
+        date: "13.05.2025",
+        changes: [
+            "The big UI-Update!",
+            "Changed Game Color Scheme to Darker",
+            "Changed Background to Image instead of Color"
+        ]
+    },
+    {
         version: "0.0.2",
         date: "13.05.2025",
         changes: [
