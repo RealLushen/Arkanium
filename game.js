@@ -17,7 +17,9 @@ let gameState = {
         thornsPercentage: 0,
         berserkerActive: false,
         randomStartStats: false,
-        statusEffects: []
+        statusEffects: [],
+        shieldActive: false,
+        shieldValue: 0
     },
     enemy: {
         name: "Monster",
@@ -36,8 +38,8 @@ let gameState = {
         },
         defend: {
             name: "Defend",
-            manaCost: 20,
-            damageReduction: 0.75,
+            manaCost: 45,
+            shieldValue: 50,
             offensiveDefense: false
         },
         heal: {
@@ -51,7 +53,6 @@ let gameState = {
         }
     },
     rounds: 0,
-    playerDefending: false,
     activeMutations: [],
     materialDropChanceModifier: 1,
     materialDropAmountModifier: 1,
@@ -149,8 +150,9 @@ function startNewRound() {
     // Increment rounds counter
     gameState.rounds++;
     
-    // Reset player's defending status
-    gameState.playerDefending = false;
+    // Reset player's shield status
+    gameState.player.shieldActive = false;
+    gameState.player.shieldValue = 0;
     
     // Clear status effects
     gameState.player.statusEffects = [];
@@ -438,14 +440,15 @@ function playerDefend() {
         return;
     }
     
-    // Set defending status
-    gameState.playerDefending = true;
+    // Set shield status
+    gameState.player.shieldActive = true;
+    gameState.player.shieldValue = gameState.abilities.defend.shieldValue;
     
     // Use mana
     gameState.player.currentMana -= gameState.abilities.defend.manaCost;
     
     // Add to battle log
-    addBattleLog(`${gameState.player.name} prepares to defend against the next attack!`, "player-action");
+    addBattleLog(`${gameState.player.name} activates a shield that blocks ${gameState.player.shieldValue} damage!`, "player-action");
     
     // Check if offensive defense is active
     if (gameState.abilities.defend.offensiveDefense) {
@@ -471,6 +474,7 @@ function playerDefend() {
     
     // Update UI
     updatePlayerStats();
+    updateStatusEffects();
 }
 
 function playerHeal() {
@@ -556,13 +560,17 @@ function enemyAttack() {
     // Calculate damage
     const damage = getRandomInt(gameState.enemy.minDamage, gameState.enemy.maxDamage);
     
-    // Check if player is defending
+    // Check if player has shield active
     let finalDamage = damage;
+    let shieldBlockedAmount = 0;
     
-    if (gameState.playerDefending) {
-        finalDamage = Math.floor(damage * (1 - gameState.abilities.defend.damageReduction));
-        addBattleLog(`${gameState.player.name} blocks ${Math.floor(damage * gameState.abilities.defend.damageReduction)} damage!`, "player-action");
-        gameState.playerDefending = false; // Defense only lasts for one attack
+    if (gameState.player.shieldActive) {
+        shieldBlockedAmount = Math.min(damage, gameState.player.shieldValue);
+        finalDamage = Math.max(0, damage - shieldBlockedAmount);
+        
+        addBattleLog(`${gameState.player.name}'s shield blocks ${shieldBlockedAmount} damage!`, "player-action");
+        gameState.player.shieldActive = false;
+        gameState.player.shieldValue = 0;
     }
     
     // Apply damage to player
@@ -599,6 +607,7 @@ function enemyAttack() {
     // Update UI
     updatePlayerStats();
     updateEnemyStats();
+    updateStatusEffects();
     
     // Check if player is defeated
     if (gameState.player.currentHp <= 0) {
@@ -612,6 +621,7 @@ function enemyAttack() {
             processStatusEffects(gameState.player, 'onTurnStart');
             updatePlayerStats();
             updateEnemyStats();
+            updateStatusEffects();
             
             // Check if player is defeated by status effects
             if (gameState.player.currentHp <= 0) {
@@ -1037,6 +1047,27 @@ function updateStatusEffects() {
     // Update player status effects
     playerStatusEffectsElement.innerHTML = '';
     
+    // Add shield indicator if active
+    if (gameState.player.shieldActive && gameState.player.shieldValue > 0) {
+        const shieldElement = document.createElement('div');
+        shieldElement.className = 'status-effect shield-effect';
+        shieldElement.dataset.description = `Shield active: Blocks ${gameState.player.shieldValue} damage from next attack`;
+        
+        const iconElement = document.createElement('span');
+        iconElement.className = 'effect-icon';
+        iconElement.textContent = '🛡️';
+        
+        const nameElement = document.createElement('span');
+        nameElement.className = 'effect-name';
+        nameElement.textContent = `Shield (${gameState.player.shieldValue})`;
+        
+        shieldElement.appendChild(iconElement);
+        shieldElement.appendChild(nameElement);
+        
+        playerStatusEffectsElement.appendChild(shieldElement);
+    }
+    
+    // Add regular status effects
     if (gameState.player.statusEffects && gameState.player.statusEffects.length > 0) {
         gameState.player.statusEffects.forEach(effect => {
             const effectElement = document.createElement('div');

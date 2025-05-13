@@ -85,11 +85,11 @@ const MUTATIONS = [
     },
     {
         id: "improved_defense",
-        name: "Defensive Expertise",
-        description: "Your defend ability blocks 90% of damage instead of 75%",
+        name: "Enhanced Shield",
+        description: "Your shield now blocks 75 damage instead of 50",
         category: MUTATION_CATEGORIES.POSITIVE,
         effect: (gameState) => {
-            gameState.abilities.defend.damageReduction = 0.9;
+            gameState.abilities.defend.shieldValue = 75;
         }
     },
     {
@@ -171,11 +171,11 @@ const MUTATIONS = [
     },
     {
         id: "reduced_defense",
-        name: "Defensive Weakness",
-        description: "Your defend ability blocks 60% of damage instead of 75%",
+        name: "Weakened Shield",
+        description: "Your shield blocks only 30 damage instead of 50",
         category: MUTATION_CATEGORIES.NEGATIVE,
         effect: (gameState) => {
-            gameState.abilities.defend.damageReduction = 0.6;
+            gameState.abilities.defend.shieldValue = 30;
         }
     },
     {
@@ -255,12 +255,11 @@ const MUTATIONS = [
     {
         id: "trade_defense",
         name: "Offensive Stance",
-        description: "Your defend ability costs 10 more Mana but also deals damage equal to 50% of your weapon",
+        description: "Your shield blocks 20 less damage but also deals damage equal to 50% of your weapon",
         category: MUTATION_CATEGORIES.NEUTRAL,
         effect: (gameState) => {
-            gameState.abilities.defend.manaCost += 10;
+            gameState.abilities.defend.shieldValue = Math.max(10, gameState.abilities.defend.shieldValue - 20);
             gameState.abilities.defend.offensiveDefense = true;
-            updateAbilityButtons();
         }
     },
     {

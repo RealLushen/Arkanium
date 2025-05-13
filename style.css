@@ -498,6 +498,12 @@ footer {
     position: relative;
 }
 
+.shield-effect {
+    background-color: rgba(33, 150, 243, 0.2);
+    border: 1px solid rgba(33, 150, 243, 0.6);
+    font-weight: bold;
+}
+
 .status-effect:hover::after {
     content: attr(data-description);
     position: absolute;
