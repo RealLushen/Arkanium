@@ -1,4 +1,32 @@
-/* Global Styles */
+/* Additional aggressive fix for containers */
+.main-menu .weapon-display,
+.main-menu .materials-container,
+.main-menu .upgrade-section {
+    background-color: var(--input-bg) !important;
+    color: var(--text-color) !important;
+}
+
+.main-menu .material,
+.main-menu #upgrade-cost {
+    background-color: rgba(255, 140, 0, 0.1) !important;
+    color: var(--text-color) !important;
+}
+
+.main-menu .cost-item {
+    background-color: var(--container-bg) !important;
+    color: var(--text-color) !important;
+}
+
+/* Force-set backgrounds on possible nested elements */
+.main-menu div, .main-menu p, .main-menu span {
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+/* Remove potential background images that might be interfering */
+.main-menu div {
+    background-image: none !important;
+}/* Global Styles */
 :root {
     --primary-color: #ff8c00;
     --primary-light: #ffb266;
