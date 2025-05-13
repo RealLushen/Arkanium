@@ -21,6 +21,13 @@
                     <input type="text" id="nickname-input" placeholder="Your nickname..." maxlength="15">
                     <button id="start-game-btn" disabled>Start a Run ⚔️</button>
                 </div>
+                <div class="patch-notes-section">
+                    <h2>Patch Notes</h2>
+                    <div id="patch-notes-container" class="patch-notes-container">
+                        <!-- Patch notes will be inserted here -->
+                    </div>
+                    <button id="view-all-patches-btn" class="secondary-btn">View All Patch Notes</button>
+                </div>
             </div>
 
             <div class="weapon-section">
@@ -124,6 +131,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
     
     <script src="firebase.js"></script>
+    <script src="patchnotes.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

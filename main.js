@@ -147,6 +147,10 @@ const costIronElement = document.getElementById('cost-iron');
 const costIronContainer = document.getElementById('cost-iron-container');
 const costTitaniumElement = document.getElementById('cost-titanium');
 const costTitaniumContainer = document.getElementById('cost-titanium-container');
+const viewAllPatchesBtn = document.getElementById('view-all-patches-btn');
+
+// Patch Notes variables
+let showingAllPatches = false;
 
 // Initialize the game
 function initGame() {
@@ -159,6 +163,9 @@ function initGame() {
     // Load leaderboard
     loadLeaderboard(updateLeaderboardUI);
     
+    // Load patch notes
+    displayPatchNotes('patch-notes-container', 3);
+    
     // Update UI with player data
     updatePlayerDataUI();
     
@@ -167,8 +174,26 @@ function initGame() {
     startGameBtn.addEventListener('click', startGame);
     upgradeBtn.addEventListener('click', upgradeWeapon);
     
+    // Add patch notes event listeners
+    if (viewAllPatchesBtn) {
+        viewAllPatchesBtn.addEventListener('click', toggleAllPatchNotes);
+    }
+    
     // Validate nickname (in case it's filled from previous session)
     validateNickname();
+}
+
+// Toggle between showing recent and all patch notes
+function toggleAllPatchNotes() {
+    showingAllPatches = !showingAllPatches;
+    
+    if (showingAllPatches) {
+        displayPatchNotes('patch-notes-container', null);
+        viewAllPatchesBtn.textContent = 'Show Recent Patch Notes';
+    } else {
+        displayPatchNotes('patch-notes-container', 3);
+        viewAllPatchesBtn.textContent = 'View All Patch Notes';
+    }
 }
 
 // Load player data from localStorage
