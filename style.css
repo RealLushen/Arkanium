@@ -102,7 +102,7 @@ input {
 
 .main-menu main {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 2.2fr 2fr;
     gap: 2rem;
 }
 
@@ -597,20 +597,12 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center;
 }
 
 .action-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 120px;
-    padding: 0.8rem;
-}
-
-.mana-cost {
-    font-size: 0.8rem;
-    margin-top: 0.3rem;
-    opacity: 0.8;
+    min-width: 130px;
+    padding: 0.8rem 1rem;
 }
 
 /* Materials Gained */

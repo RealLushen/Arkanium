@@ -1023,10 +1023,10 @@ function updateAbilityButtons() {
     healBtn.disabled = gameState.player.currentMana < gameState.abilities.heal.manaCost;
     replenishBtn.disabled = gameState.player.currentMana >= gameState.player.maxMana;
     
-    // Update mana cost displays
-    document.querySelector('#attack-btn .mana-cost').textContent = `${gameState.abilities.attack.manaCost} 💧`;
-    document.querySelector('#defend-btn .mana-cost').textContent = `${gameState.abilities.defend.manaCost} 💧`;
-    document.querySelector('#heal-btn .mana-cost').textContent = `${gameState.abilities.heal.manaCost} 💧`;
+    // Update button text with current mana costs
+    attackBtn.textContent = `⚔️ Attack (${gameState.abilities.attack.manaCost}💧)`;
+    defendBtn.textContent = `🛡️ Defend (${gameState.abilities.defend.manaCost}💧)`;
+    healBtn.textContent = `❤️ Heal (${gameState.abilities.heal.manaCost}💧)`;
 }
 
 function updateRoundsDisplay() {
