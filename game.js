@@ -13,10 +13,14 @@ let gameState = {
         },
         weaponDamageModifier: 1,
         doubleAttackChance: 0,
+        doubleDamageChance: 0,
         vampiricPercentage: 0,
         thornsPercentage: 0,
         berserkerActive: false,
         randomStartStats: false,
+        damageReduction: 0,
+        survivalChance: 0,
+        startRoundShield: 0,
         statusEffects: [],
         shieldActive: false,
         shieldValue: 0
@@ -84,6 +88,7 @@ const defendBtn = document.getElementById('defend-btn');
 const healBtn = document.getElementById('heal-btn');
 const replenishBtn = document.getElementById('replenish-btn');
 const endTurnBtn = document.getElementById('end-turn-btn');
+const shopBtn = document.getElementById('shop-btn');
 
 const homeBtn = document.getElementById('home-btn');
 const materialsGainedElement = document.getElementById('materials-gained');
@@ -92,6 +97,8 @@ const continueBtn = document.getElementById('continue-btn');
 
 const mutationOverlay = document.getElementById('mutation-overlay');
 const mutationOptionsElement = document.getElementById('mutation-options');
+const shopOverlay = document.getElementById('shop-overlay');
+const closeShopBtn = document.getElementById('close-shop-btn');
 
 const gameOverOverlay = document.getElementById('game-over-overlay');
 const gameOverStatsElement = document.getElementById('game-over-stats');
@@ -102,6 +109,9 @@ function initGame() {
     // Load player data from localStorage
     loadPlayerData();
     
+    // Reset shop state for new run
+    resetShopState();
+    
     // Setup event listeners
     attackBtn.addEventListener('click', playerAttack);
     defendBtn.addEventListener('click', playerDefend);
@@ -111,12 +121,15 @@ function initGame() {
     homeBtn.addEventListener('click', returnToMainMenu);
     continueBtn.addEventListener('click', continueAfterVictory);
     returnBtn.addEventListener('click', returnToMainMenu);
+    shopBtn.addEventListener('click', openShop);
+    closeShopBtn.addEventListener('click', closeShop);
     
     // Start the first round
     startNewRound();
     
     // Update UI
     updateUI();
+    updateCrystalDisplay();
 }
 
 // Load player data from localStorage
@@ -166,10 +179,23 @@ function startNewRound() {
         showMutationOptions();
     }
     
+    // Check if shop should open (every 5 rounds)
+    if (gameState.rounds % 5 === 0) {
+        // Show shop button
+        shopBtn.classList.remove('hidden');
+        addBattleLog("The shop is available! Click the Shop button to purchase items.", "system-message");
+    } else {
+        // Hide shop button
+        shopBtn.classList.add('hidden');
+    }
+    
     // Apply random start stats effect if active
     if (gameState.player.randomStartStats) {
         applyRandomStartStats();
     }
+    
+    // Apply start-of-round shield if player has the Imperial Shield
+    applyStartRoundShield();
     
     // Update UI
     updateRoundsDisplay();
@@ -177,6 +203,7 @@ function startNewRound() {
     updateEnemyStats();
     updateStatusEffects();
     updateActiveMutations();
+    updatePlayerInventory();
     
     // Add round start message to battle log
     addBattleLog(`Round ${gameState.rounds} begins! A ${gameState.enemy.name} appears!`, "system-message");
@@ -216,6 +243,9 @@ function generateEnemy() {
     } else {
         tier = 6;
     }
+    
+    // Store the tier in the enemy object for crystal rewards
+    gameState.currentEnemyTier = tier;
     
     // Get enemies from the current tier
     const enemiesPool = ENEMY_POOLS[tier];
@@ -379,7 +409,13 @@ function playerAttack() {
     }
     
     // Calculate final damage
-    const damage = getRandomInt(minDamage, maxDamage);
+    let damage = getRandomInt(minDamage, maxDamage);
+    
+    // Check for double damage chance (Hellhound Claw item)
+    if (gameState.player.doubleDamageChance > 0 && Math.random() < gameState.player.doubleDamageChance) {
+        damage *= 2;
+        addBattleLog("Hellhound Claw glows! Double damage!", "player-action");
+    }
     
     // Apply damage to enemy
     let damageDealt = applyDamage(gameState.enemy, damage);
@@ -573,11 +609,27 @@ function enemyAttack() {
         gameState.player.shieldValue = 0;
     }
     
-    // Apply damage to player
-    applyDamage(gameState.player, finalDamage);
+    // Apply damage reduction from items (Orcish Shoulders)
+    if (gameState.player.damageReduction > 0) {
+        const reducedAmount = Math.floor(finalDamage * gameState.player.damageReduction);
+        finalDamage = Math.max(0, finalDamage - reducedAmount);
+        
+        if (reducedAmount > 0) {
+            addBattleLog(`Orcish Shoulders absorb ${reducedAmount} damage!`, "player-action");
+        }
+    }
     
-    // Add to battle log
-    addBattleLog(`${gameState.enemy.name} attacks ${gameState.player.name} for ${finalDamage} damage!`, "enemy-action");
+    // Check for survival chance (Rogue's Cloak)
+    const wouldDie = gameState.player.currentHp <= finalDamage;
+    const survived = wouldDie && checkSurvivalChance(finalDamage);
+    
+    if (!survived) {
+        // Apply damage to player
+        applyDamage(gameState.player, finalDamage);
+        
+        // Add to battle log
+        addBattleLog(`${gameState.enemy.name} attacks ${gameState.player.name} for ${finalDamage} damage!`, "enemy-action");
+    }
     
     // Check if enemy has a custom onAttack function from a trait
     if (typeof gameState.enemy.onAttack === 'function') {
@@ -699,6 +751,12 @@ function checkEnemyDefeated() {
     if (gameState.enemy.currentHp <= 0) {
         // Enemy is defeated
         addBattleLog(`${gameState.enemy.name} has been defeated!`, "system-message");
+        
+        // Award crystals based on enemy tier
+        if (gameState.currentEnemyTier) {
+            const crystals = awardCrystals(gameState.currentEnemyTier);
+            addBattleLog(`You gained ${crystals} crystals!`, "system-message");
+        }
         
         // Calculate material drops
         const materialDrops = calculateMaterialDrops();
@@ -865,6 +923,30 @@ function showGameOver() {
     // Add stats elements
     addStatElement('Rounds Survived', gameState.rounds);
     addStatElement('Weapon Level', gameState.player.weapon.level);
+    addStatElement('Crystals Earned', shopState.crystals);
+    
+    // Add purchased items
+    if (shopState.purchasedItems.length > 0) {
+        const itemsContainer = document.createElement('div');
+        itemsContainer.className = 'items-container';
+        
+        const itemsTitle = document.createElement('h3');
+        itemsTitle.textContent = 'Purchased Items';
+        itemsContainer.appendChild(itemsTitle);
+        
+        const itemsList = document.createElement('ul');
+        shopState.purchasedItems.forEach(itemId => {
+            const item = SHOP_ITEMS.find(i => i.id === itemId);
+            if (item) {
+                const itemElement = document.createElement('li');
+                itemElement.textContent = `${item.name}: ${item.description}`;
+                itemsList.appendChild(itemElement);
+            }
+        });
+        
+        itemsContainer.appendChild(itemsList);
+        gameOverStatsElement.appendChild(itemsContainer);
+    }
     
     // Add active mutations
     if (gameState.activeMutations.length > 0) {
@@ -1171,6 +1253,13 @@ function toggleActionButtons(enabled) {
     healBtn.disabled = !enabled || gameState.player.currentMana < gameState.abilities.heal.manaCost;
     replenishBtn.disabled = !enabled || gameState.player.currentMana >= gameState.player.maxMana;
     endTurnBtn.disabled = !enabled;
+    
+    // Don't disable shop button if it's already visible
+    if (enabled && !shopBtn.classList.contains('hidden')) {
+        shopBtn.disabled = false;
+    } else {
+        shopBtn.disabled = !enabled;
+    }
 }
 
 // Initialize the game when the DOM is loaded

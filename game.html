@@ -14,6 +14,11 @@
                     <span class="stat-label">Rounds:</span>
                     <span id="rounds-survived">0</span>
                 </div>
+                <div class="stat crystal-stat">
+                    <span class="stat-label">Crystals:</span>
+                    <span id="crystal-display">10</span>
+                    <span class="crystal-icon">💎</span>
+                </div>
             </div>
             <div class="logo-container">
                 <img src="logo.png" alt="Arkanium" class="game-logo game-header-logo">
@@ -28,6 +33,10 @@
                 <div class="player-container">
                     <div class="character-avatar">
                         <span class="avatar-placeholder">🧙</span>
+                        <div id="player-inventory" class="player-inventory">
+                            <!-- Player items will be shown here -->
+                            <div class="no-items">No items yet</div>
+                        </div>
                     </div>
                     <div class="character-info">
                         <h3 id="player-name">Player</h3>
@@ -95,6 +104,7 @@
                     <button id="defend-btn" class="action-btn">🛡️ Defend (20💧)</button>
                     <button id="heal-btn" class="action-btn">❤️ Heal (15💧)</button>
                     <button id="replenish-btn" class="action-btn">💧 Mana Restore</button>
+                    <button id="shop-btn" class="action-btn shop-btn hidden">🛒 Shop</button>
                     <button id="end-turn-btn" class="action-btn secondary-btn">End Turn ➡️</button>
                 </div>
             </div>
@@ -117,6 +127,24 @@
             </div>
         </div>
 
+        <!-- Shop overlay -->
+        <div id="shop-overlay" class="overlay hidden">
+            <div class="overlay-content shop-content">
+                <div class="shop-header">
+                    <h2>Item Shop</h2>
+                    <div class="crystal-balance">
+                        <span class="crystal-icon">💎</span>
+                        <span id="crystal-count">0</span>
+                    </div>
+                </div>
+                <p>Purchase items to help you on your journey:</p>
+                <div id="shop-items" class="shop-items">
+                    <!-- Shop items will be dynamically inserted here -->
+                </div>
+                <button id="close-shop-btn" class="action-btn">Close Shop</button>
+            </div>
+        </div>
+
         <!-- Game over overlay -->
         <div id="game-over-overlay" class="overlay hidden">
             <div class="overlay-content">
@@ -135,6 +163,7 @@
     <script src="firebase.js"></script>
     <script src="enemies.js"></script>
     <script src="mutations.js"></script>
+    <script src="shop.js"></script>
     <script src="game.js"></script>
 </body>
 </html>

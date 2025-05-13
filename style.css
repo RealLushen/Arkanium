@@ -782,3 +782,170 @@ footer {
         flex: 1 1 calc(50% - 1rem);
     }
 }
+
+/* Shop and Crystal styles */
+.crystal-stat {
+    display: flex;
+    align-items: center;
+}
+
+.crystal-icon {
+    font-size: 1.2rem;
+    margin-left: 0.4rem;
+    color: #4db8ff;
+}
+
+.shop-btn {
+    background-color: #1e88e5;
+}
+
+.shop-btn:hover {
+    background-color: #1565c0;
+}
+
+.shop-content {
+    width: 700px;
+    max-width: 90%;
+}
+
+.shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.crystal-balance {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: var(--card-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.shop-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.shop-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.shop-item.purchased {
+    border-color: var(--success-color);
+    opacity: 0.8;
+}
+
+.item-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    background-color: var(--container-bg);
+    padding: 1rem;
+}
+
+.item-info {
+    padding: 1rem;
+    flex: 1;
+}
+
+.item-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.item-description {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.item-cost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: var(--highlight-bg);
+    font-weight: bold;
+}
+
+.buy-button {
+    padding: 0.8rem;
+    border-radius: 0;
+}
+
+.buy-button.purchased {
+    background-color: var(--success-color);
+    cursor: default;
+}
+
+/* Player inventory */
+.player-inventory {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    justify-content: center;
+}
+
+.inventory-item {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--highlight-bg);
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: help;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.inventory-item:hover {
+    transform: scale(1.1);
+}
+
+.no-items {
+    font-size: 0.8rem;
+    color: #ffc78a;
+    font-style: italic;
+}
+
+/* Tooltip styling */
+.inventory-item:hover::after,
+.shop-item:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 100;
+    width: max-content;
+    max-width: 200px;
+    font-size: 0.8rem;
+}
