@@ -1,8 +1,8 @@
 // Patch notes data
 const PATCH_NOTES = [
     {
-        version: "0.0.1 - Alpha",
-        date: "May 5, 2025",
+        version: "0.0.1",
+        date: "13.05.2025",
         changes: [
             "Initial Alpha Build Release",
             "Implemented Enemy Battle Logic",
