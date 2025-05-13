@@ -309,8 +309,8 @@ function upgradeWeapon() {
             playerData.weapon.description = newTier.description;
             
             // Base damage changes with tier
-            playerData.weapon.minDamage = newTier.baseMinDamage;
-            playerData.weapon.maxDamage = newTier.baseMaxDamage;
+            playerData.weapon.minDamage = Math.floor(newTier.baseMinDamage);
+            playerData.weapon.maxDamage = Math.floor(newTier.baseMaxDamage);
             
             // Add upgrade animation
             weaponNameElement.classList.add('pulse-animation');
@@ -319,8 +319,8 @@ function upgradeWeapon() {
             }, 500);
         } else {
             // Just increase damage within the same tier
-            playerData.weapon.minDamage += newTier.damagePerLevel;
-            playerData.weapon.maxDamage += newTier.damagePerLevel;
+            playerData.weapon.minDamage = Math.floor(playerData.weapon.minDamage + newTier.damagePerLevel);
+            playerData.weapon.maxDamage = Math.floor(playerData.weapon.maxDamage + newTier.damagePerLevel);
         }
         
         // Add upgrade animation
