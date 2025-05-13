@@ -340,8 +340,27 @@ function upgradeWeapon() {
 // Validate nickname
 function validateNickname() {
     const nickname = nicknameInput.value.trim();
+    const isValid = nickname.length >= 2 && nickname.length <= 10;
+    
     playerData.nickname = nickname;
-    startGameBtn.disabled = nickname === '';
+    startGameBtn.disabled = !isValid;
+    
+    // Add visual feedback for validation
+    if (nickname.length > 0) {
+        if (nickname.length < 2) {
+            nicknameInput.classList.add('invalid');
+            nicknameInput.title = "Nickname must be at least 2 characters";
+        } else if (nickname.length > 10) {
+            nicknameInput.classList.add('invalid');
+            nicknameInput.title = "Nickname must be maximum 10 characters";
+        } else {
+            nicknameInput.classList.remove('invalid');
+            nicknameInput.title = "";
+        }
+    } else {
+        nicknameInput.classList.remove('invalid');
+        nicknameInput.title = "";
+    }
 }
 
 // Start the game

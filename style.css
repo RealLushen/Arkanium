@@ -129,6 +129,11 @@ input {
     margin: 1rem auto;
 }
 
+#nickname-input.invalid {
+    border-color: var(--danger-color);
+    background-color: rgba(244, 67, 54, 0.05);
+}
+
 #start-game-btn {
     display: block;
     margin: 0 auto;
