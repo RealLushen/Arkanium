@@ -1,6 +1,18 @@
 // Patch notes data
 const PATCH_NOTES = [
     {
+        version: "0.0.2",
+        date: "13.05.2025",
+        changes: [
+            "Added 30 new Enemies (5 per Tier)",
+            "Reduced Material Drop Rates by 50%",
+            "Reduced Axe Damage per Upgrade by 30%",
+            "Changed the Defend Mechanic to Flat Reduction",
+            "Added a Indicator Ingame to show active Block",
+            "Updated Mutations to fit to the new Block Modifier"
+        ]
+    },
+    {
         version: "0.0.1",
         date: "13.05.2025",
         changes: [
