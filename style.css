@@ -588,9 +588,11 @@ footer {
 /* Actions Section */
 .actions-section {
     background-color: white;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
 }
 
 .action-buttons {
@@ -598,11 +600,13 @@ footer {
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+    padding: 0;
 }
 
 .action-btn {
     min-width: 130px;
     padding: 0.8rem 1rem;
+    margin: 0;
 }
 
 /* Materials Gained */
