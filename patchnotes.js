@@ -1,6 +1,17 @@
 // Patch notes data
 const PATCH_NOTES = [
     {
+        version: "0.0.4",
+        date: "13.05.2025",
+        changes: [
+            "Crystal Shop has arrived!",
+            "New In-Game Shop where Players can buy Items",
+            "Items alter the Run in different ways",
+            "Shop Items are ONLY for the current Run",
+            "Currently 6 Items: Orcish Shoulders, Demon Helmet, Hellhound Claw, Elemental Extractor, Imperial Shield & Rogue's Cloak"
+        ]
+    },
+    {
         version: "0.0.3",
         date: "13.05.2025",
         changes: [
