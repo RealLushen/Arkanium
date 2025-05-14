@@ -8,6 +8,7 @@ const PATCH_NOTES = [
             "Players can passively gain Materials here",
             "Send a worker into the Mine, he farms Materials while you normally play",
             "The Mine unlocks at Round 20+ & can currently be upgraded to Level 5 with Gold Coins",
+            "Balance Update: Adjusted Enemies to new Axe Upgrades and Damage Values of the Axe"
         ]
     },    
     {
