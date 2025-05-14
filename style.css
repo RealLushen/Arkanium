@@ -448,8 +448,8 @@ footer {
 }
 
 .character-avatar {
-    width: 100px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -460,7 +460,7 @@ footer {
 }
 
 .avatar-placeholder {
-    font-size: 3rem;
+    font-size: 4.8rem;
 }
 
 .character-info {
@@ -469,6 +469,11 @@ footer {
 
 .hp-container, .mana-container {
     margin-bottom: 0.5rem;
+    width: 100%;
+    background-color: var(--container-bg);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 0.2rem;
 }
 
 .hp-label, .mana-label {
@@ -477,7 +482,7 @@ footer {
 }
 
 .hp-bar-container, .mana-bar-container {
-    width: 100%;
+    width: 80%;
     height: 12px;
     background-color: var(--container-bg);
     border-radius: 6px;
