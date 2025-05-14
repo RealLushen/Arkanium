@@ -907,17 +907,48 @@ function playerDefeated() {
     
     // Disable action buttons
     toggleActionButtons(false);
-
-        // Update highest round record for mine unlocking
-    if (typeof updateHighestRound === 'function') {
-        updateHighestRound(gameState.rounds);
-    }
+    
+    // Save the highest round reached
+    saveHighestRound(gameState.rounds);
     
     // Show game over overlay
     showGameOver();
     
     // Submit score to leaderboard
     submitToLeaderboard();
+}
+
+// Add this function to save the highest round
+function saveHighestRound(rounds) {
+    console.log("Saving highest round:", rounds);
+    
+    // First try to use the global function if available
+    if (typeof window.updateHighestRound === 'function') {
+        console.log("Using global updateHighestRound function");
+        window.updateHighestRound(rounds);
+        return;
+    }
+    
+    // Fallback direct implementation
+    console.log("Using fallback highest round save method");
+    const savedPlayerData = localStorage.getItem('arkaniumPlayerData');
+    
+    if (savedPlayerData) {
+        try {
+            const playerData = JSON.parse(savedPlayerData);
+            
+            // Update highest round if current round is higher
+            if (!playerData.highestRound || rounds > playerData.highestRound) {
+                playerData.highestRound = rounds;
+                console.log("Updated highest round to:", rounds);
+                
+                // Save updated data
+                localStorage.setItem('arkaniumPlayerData', JSON.stringify(playerData));
+            }
+        } catch (error) {
+            console.error('Error saving highest round:', error);
+        }
+    }
 }
 
 // Show game over overlay

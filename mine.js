@@ -145,9 +145,12 @@ function loadMineState() {
                 }
             }
             
-            // Check if mine should be unlocked based on highest round
+            // Explicitly check if mine should be unlocked based on highest round
+            console.log("Checking mine unlock: Highest round =", playerData.highestRound);
             if (playerData.highestRound && playerData.highestRound >= UNLOCK_REQUIREMENT) {
+                console.log("Mine should be unlocked!");
                 mineState.unlocked = true;
+                saveMineState();
             }
         } catch (error) {
             console.error('Error loading mine state:', error);
@@ -183,7 +186,9 @@ function checkMineUnlocked() {
             const playerData = JSON.parse(savedPlayerData);
             
             // Check if player has reached the required round
+            console.log("Mine unlock check - Highest round:", playerData.highestRound, "Requirement:", UNLOCK_REQUIREMENT);
             if (playerData.highestRound && playerData.highestRound >= UNLOCK_REQUIREMENT) {
+                console.log("Unlocking mine based on highest round");
                 mineState.unlocked = true;
                 saveMineState();
             }
@@ -195,8 +200,10 @@ function checkMineUnlocked() {
     // Update UI based on unlock status
     if (mineLockedOverlay) {
         if (mineState.unlocked) {
+            console.log("Mine UI - showing unlocked state");
             mineLockedOverlay.classList.add('hidden');
         } else {
+            console.log("Mine UI - showing locked state");
             mineLockedOverlay.classList.remove('hidden');
         }
     }
@@ -410,7 +417,13 @@ function updateMiningTimer() {
     const now = new Date();
     const timeRemaining = Math.max(0, mineState.miningEndTime - now);
     
+    // Add debug log for low values
+    if (timeRemaining < 10000) { // Log when less than 10 seconds remaining
+        console.log("Mining timer check - Time remaining:", timeRemaining);
+    }
+    
     if (timeRemaining <= 0) {
+        console.log("Mining complete!");
         completeMining();
         return;
     }
@@ -509,6 +522,7 @@ function updateMineUI() {
 
 // Update highest round record after game over
 function updateHighestRound(rounds) {
+    console.log("Updating highest round to:", rounds);
     const savedPlayerData = localStorage.getItem('arkaniumPlayerData');
     
     if (savedPlayerData) {
@@ -518,12 +532,14 @@ function updateHighestRound(rounds) {
             // Update highest round if current round is higher
             if (!playerData.highestRound || rounds > playerData.highestRound) {
                 playerData.highestRound = rounds;
+                console.log("New highest round record:", rounds);
                 
                 // Save updated data
                 localStorage.setItem('arkaniumPlayerData', JSON.stringify(playerData));
                 
                 // Check if mine should be unlocked
                 if (rounds >= UNLOCK_REQUIREMENT && !mineState.unlocked) {
+                    console.log("Mine unlocked by reaching round", rounds);
                     mineState.unlocked = true;
                     saveMineState();
                 }
@@ -534,10 +550,32 @@ function updateHighestRound(rounds) {
     }
 }
 
+// Debugging helper function
+function debugMineState() {
+    const savedPlayerData = localStorage.getItem('arkaniumPlayerData');
+    if (savedPlayerData) {
+        try {
+            const playerData = JSON.parse(savedPlayerData);
+            console.log("Current player data:", playerData);
+            console.log("Highest round recorded:", playerData.highestRound);
+            console.log("Mine state:", mineState);
+            console.log("Unlock requirement:", UNLOCK_REQUIREMENT);
+        } catch (error) {
+            console.error("Error parsing player data for debug:", error);
+        }
+    } else {
+        console.log("No saved player data found");
+    }
+}
+
 // Initialize the mine when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on the main menu page
     if (document.querySelector('.main-menu')) {
+        debugMineState(); // Run diagnostic on load
         initMine();
     }
 });
+
+// Make updateHighestRound globally available
+window.updateHighestRound = updateHighestRound;
