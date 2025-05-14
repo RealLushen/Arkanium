@@ -99,6 +99,48 @@
                 </div>
             </div>
 
+            <!-- New Mine Section -->
+            <div class="mine-section">
+                <h2>The Mine ⛏️</h2>
+                <div id="mine-container" class="mine-container">
+                    <p class="mine-intro">You can assign workers into the Mine and farm Gold Coins, Iron Bars and Titanium here.</p>
+                    
+                    <div class="mine-status">
+                        <div class="mine-level-container">
+                            <span class="stat-label">Mine Level:</span>
+                            <span id="mine-level">1</span>
+                        </div>
+                        <div class="mine-description-container">
+                            <span id="mine-description">Basic Mine</span>
+                        </div>
+                        <div class="mine-output-container">
+                            <span id="mine-output">Output: 5 Gold</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mine-timer-container">
+                        <div id="mine-indicator" class="mine-indicator">
+                            <span class="pickaxe-emoji">⛏️</span>
+                        </div>
+                        <div class="mine-timer">
+                            <span class="timer-label">Time Remaining:</span>
+                            <span id="mine-timer">20:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mine-actions">
+                        <button id="start-mine-btn" class="mine-btn">Start Mining</button>
+                        <button id="upgrade-mine-btn" class="mine-btn">Upgrade (100 Gold)</button>
+                    </div>
+                </div>
+                
+                <!-- Locked overlay for mine -->
+                <div id="mine-locked-overlay" class="mine-locked-overlay">
+                    <div class="lock-icon">🔒</div>
+                    <div class="lock-text">The Mine unlocks at Round 20+</div>
+                </div>
+            </div>
+
             <div class="leaderboard-section">
                 <h2>Leaderboard 🏆</h2>
                 <div class="leaderboard-container">
@@ -122,13 +164,16 @@
         </main>
     </div>
 
+    <!-- Loading animation script -->
+    <script src="loadingAnimation.js"></script>
+    
     <!-- Firebase App (the core Firebase SDK) -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
     
-    <script src="loadingAnimation.js"></script>
     <script src="firebase.js"></script>
     <script src="patchnotes.js"></script>
+    <script src="mine.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

@@ -907,6 +907,11 @@ function playerDefeated() {
     
     // Disable action buttons
     toggleActionButtons(false);
+
+        // Update highest round record for mine unlocking
+    if (typeof updateHighestRound === 'function') {
+        updateHighestRound(gameState.rounds);
+    }
     
     // Show game over overlay
     showGameOver();

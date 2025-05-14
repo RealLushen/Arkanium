@@ -1,6 +1,16 @@
 // Patch notes data
 const PATCH_NOTES = [
     {
+        version: "0.0.5",
+        date: "14.05.2025",
+        changes: [
+            "The Mine has arrived!",
+            "Players can passively gain Materials here",
+            "Send a worker into the Mine, he farms Materials while you normally play",
+            "The Mine unlocks at Round 20+ & can currently be upgraded to Level 5 with Gold Coins",
+        ]
+    },    
+    {
         version: "0.0.4",
         date: "13.05.2025",
         changes: [

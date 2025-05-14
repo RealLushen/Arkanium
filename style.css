@@ -90,7 +90,7 @@ input {
 
 /* Main Menu Styles */
 .main-menu .container {
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -109,15 +109,30 @@ input {
     height: auto;
 }
 
+/* Update for the grid layout to account for the mine section */
 .main-menu main {
     display: grid;
-    grid-template-columns: 1fr 3fr 2.2fr;
+    grid-template-columns: 1fr 3fr 3fr 2.2fr;
     gap: 2rem;
+}
+
+@media (max-width: 1400px) {
+    .main-menu main {
+        grid-template-columns: 1fr 2fr 2fr;
+    }
+    
+    .leaderboard-section {
+        grid-column: span 3;
+    }
 }
 
 @media (max-width: 992px) {
     .main-menu main {
         grid-template-columns: 1fr;
+    }
+    
+    .leaderboard-section {
+        grid-column: auto;
     }
 }
 
@@ -1000,4 +1015,171 @@ footer {
 /* Ensure main container has transition */
 .container {
     transition: opacity 0.8s ease-in-out;
+}
+
+/* Mine Section Styles */
+.mine-section {
+    background-color: var(--container-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.mine-intro {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.mine-container {
+    position: relative;
+    z-index: 1;
+}
+
+.mine-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.mine-level-container {
+    display: flex;
+    align-items: center;
+}
+
+.mine-description-container {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.mine-output-container {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    background-color: var(--highlight-bg);
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.mine-timer-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.mine-indicator {
+    font-size: 2rem;
+    opacity: 0.7;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.mine-indicator.active {
+    transform: translateY(-5px);
+    opacity: 1;
+}
+
+.pickaxe-emoji {
+    display: inline-block;
+}
+
+.mining-active .pickaxe-emoji {
+    animation: pickaxe-swing 1s infinite alternate;
+}
+
+@keyframes pickaxe-swing {
+    0% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
+.mine-timer {
+    flex: 1;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary-light);
+}
+
+.timer-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-weight: normal;
+    margin-right: 0.5rem;
+}
+
+.mine-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.mine-btn {
+    flex: 1;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+
+.mine-btn:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.mine-btn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.mine-btn:disabled {
+    background-color: #614231;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.mine-locked-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    border-radius: 8px;
+}
+
+.lock-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.lock-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: center;
+    max-width: 80%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 0.8rem;
+    border-radius: 4px;
 }

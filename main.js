@@ -156,6 +156,23 @@ let showingAllPatches = false;
 function initGame() {
     // Load player data from localStorage
     loadPlayerData();
+
+    // Update UI with player data
+function updatePlayerDataUI() {
+    // Update materials display
+    goldCoinsElement.textContent = playerData.materials.gold;
+    ironBarsElement.textContent = playerData.materials.iron;
+    titaniumBarsElement.textContent = playerData.materials.titanium;
+    
+    // Update weapon display
+    weaponLevelElement.textContent = playerData.weapon.level;
+    weaponDamageElement.textContent = `${playerData.weapon.minDamage}-${playerData.weapon.maxDamage}`;
+    weaponNameElement.textContent = playerData.weapon.name;
+    weaponDescriptionElement.textContent = playerData.weapon.description;
+    
+    // Update upgrade cost
+    updateUpgradeCost();
+}
     
     // Initialize Firebase
     initializeFirebase();
@@ -232,6 +249,10 @@ function updatePlayerDataUI() {
     // Update upgrade cost
     updateUpgradeCost();
 }
+
+
+// Update Player Data UI
+window.updatePlayerDataUI = updatePlayerDataUI;
 
 // Get current weapon tier based on level
 function getCurrentWeaponTier() {
