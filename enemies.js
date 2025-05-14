@@ -122,19 +122,19 @@ const ENEMY_TRAITS = {
     }
 };
 
-// Enemy pool by difficulty tiers
+// Enemy pool by difficulty tiers - BALANCED VERSION
 const ENEMY_POOLS = {
     // Tier 1 (Rounds 1-5)
     1: [
         {
             name: "Goblin Scout",
             emoji: "👺",
-            minHp: 15,
-            maxHp: 25,
+            minHp: 12,         // Reduced from 15
+            maxHp: 20,         // Reduced from 25
             minDamage: 2,
             maxDamage: 4,
             goldDropChance: 0.7,
-            goldDropAmount: {min: 0, max: 1},
+            goldDropAmount: {min: 1, max: 2},  // Adjusted to give at least 1 gold
             ironDropChance: 0.1,
             ironDropAmount: {min: 0, max: 0},
             titaniumDropChance: 0,
@@ -144,12 +144,12 @@ const ENEMY_POOLS = {
         {
             name: "Forest Wolf",
             emoji: "🐺",
-            minHp: 18,
-            maxHp: 28,
+            minHp: 14,         // Reduced from 18
+            maxHp: 22,         // Reduced from 28
             minDamage: 3,
-            maxDamage: 6,
+            maxDamage: 5,      // Reduced from 6
             goldDropChance: 0.6,
-            goldDropAmount: {min: 0, max: 1},
+            goldDropAmount: {min: 1, max: 2},  // Adjusted to give at least 1 gold
             ironDropChance: 0.05,
             ironDropAmount: {min: 0, max: 0},
             titaniumDropChance: 0,
@@ -159,12 +159,12 @@ const ENEMY_POOLS = {
         {
             name: "Giant Rat",
             emoji: "🐀",
-            minHp: 12,
-            maxHp: 20,
+            minHp: 10,         // Reduced from 12
+            maxHp: 16,         // Reduced from 20
             minDamage: 1,
             maxDamage: 3,
             goldDropChance: 0.8,
-            goldDropAmount: {min: 0, max: 2},
+            goldDropAmount: {min: 1, max: 3},  // Adjusted to give at least 1 gold
             ironDropChance: 0,
             ironDropAmount: {min: 0, max: 0},
             titaniumDropChance: 0,
@@ -175,12 +175,12 @@ const ENEMY_POOLS = {
         {
             name: "Wild Boar",
             emoji: "🐗",
-            minHp: 20,
-            maxHp: 30,
+            minHp: 16,         // Reduced from 20
+            maxHp: 24,         // Reduced from 30
             minDamage: 2,
-            maxDamage: 5,
+            maxDamage: 4,      // Reduced from 5
             goldDropChance: 0.65,
-            goldDropAmount: {min: 0, max: 1},
+            goldDropAmount: {min: 1, max: 2},  // Adjusted to give at least 1 gold
             ironDropChance: 0.08,
             ironDropAmount: {min: 0, max: 0},
             titaniumDropChance: 0,
@@ -190,12 +190,12 @@ const ENEMY_POOLS = {
         {
             name: "Skeleton Scout",
             emoji: "💀",
-            minHp: 14,
-            maxHp: 22,
+            minHp: 11,         // Reduced from 14
+            maxHp: 18,         // Reduced from 22
             minDamage: 2,
             maxDamage: 4,
             goldDropChance: 0.75,
-            goldDropAmount: {min: 1, max: 2},
+            goldDropAmount: {min: 1, max: 3},  // Slightly increased
             ironDropChance: 0.1,
             ironDropAmount: {min: 0, max: 0},
             titaniumDropChance: 0,
@@ -205,12 +205,12 @@ const ENEMY_POOLS = {
         {
             name: "Creeper Plant",
             emoji: "🌿",
-            minHp: 10,
-            maxHp: 16,
+            minHp: 8,          // Reduced from 10
+            maxHp: 13,         // Reduced from 16
             minDamage: 1,
-            maxDamage: 4,
+            maxDamage: 3,      // Reduced from 4
             goldDropChance: 0.6,
-            goldDropAmount: {min: 0, max: 1},
+            goldDropAmount: {min: 1, max: 2},  // Adjusted to give at least 1 gold
             ironDropChance: 0,
             ironDropAmount: {min: 0, max: 0},
             titaniumDropChance: 0,
@@ -220,12 +220,12 @@ const ENEMY_POOLS = {
         {
             name: "Small Slime",
             emoji: "🟢",
-            minHp: 16,
-            maxHp: 24,
+            minHp: 13,         // Reduced from 16
+            maxHp: 19,         // Reduced from 24
             minDamage: 1,
             maxDamage: 3,
             goldDropChance: 0.7,
-            goldDropAmount: {min: 0, max: 1},
+            goldDropAmount: {min: 1, max: 2},  // Adjusted to give at least 1 gold
             ironDropChance: 0,
             ironDropAmount: {min: 0, max: 0},
             titaniumDropChance: 0,
@@ -235,12 +235,12 @@ const ENEMY_POOLS = {
         {
             name: "Cave Bat",
             emoji: "🦇",
-            minHp: 8,
-            maxHp: 14,
+            minHp: 7,          // Reduced from 8
+            maxHp: 11,         // Reduced from 14
             minDamage: 2,
-            maxDamage: 4,
+            maxDamage: 3,      // Reduced from 4
             goldDropChance: 0.6,
-            goldDropAmount: {min: 0, max: 1},
+            goldDropAmount: {min: 1, max: 2},  // Adjusted to give at least 1 gold
             ironDropChance: 0,
             ironDropAmount: {min: 0, max: 0},
             titaniumDropChance: 0,
@@ -254,14 +254,14 @@ const ENEMY_POOLS = {
         {
             name: "Goblin Warrior",
             emoji: "👺",
-            minHp: 30,
-            maxHp: 40,
-            minDamage: 4,
-            maxDamage: 8,
+            minHp: 24,         // Reduced from 30
+            maxHp: 32,         // Reduced from 40
+            minDamage: 3,      // Reduced from 4
+            maxDamage: 7,      // Reduced from 8
             goldDropChance: 0.8,
-            goldDropAmount: {min: 1, max: 3},
+            goldDropAmount: {min: 2, max: 4},  // Increased min
             ironDropChance: 0.3,
-            ironDropAmount: {min: 0, max: 1},
+            ironDropAmount: {min: 1, max: 1},  // Guaranteed 1 iron now
             titaniumDropChance: 0,
             titaniumDropAmount: {min: 0, max: 0},
             possibleTraits: ["SWIFT"]
@@ -269,14 +269,14 @@ const ENEMY_POOLS = {
         {
             name: "Forest Bear",
             emoji: "🐻",
-            minHp: 40,
-            maxHp: 50,
-            minDamage: 5,
-            maxDamage: 10,
+            minHp: 32,         // Reduced from 40
+            maxHp: 40,         // Reduced from 50
+            minDamage: 4,      // Reduced from 5
+            maxDamage: 9,      // Reduced from 10
             goldDropChance: 0.7,
-            goldDropAmount: {min: 1, max: 2},
+            goldDropAmount: {min: 2, max: 3},  // Increased min
             ironDropChance: 0.4,
-            ironDropAmount: {min: 0, max: 1},
+            ironDropAmount: {min: 1, max: 1},  // Guaranteed 1 iron now
             titaniumDropChance: 0,
             titaniumDropAmount: {min: 0, max: 0},
             possibleTraits: ["BERSERKER"]
@@ -284,14 +284,14 @@ const ENEMY_POOLS = {
         {
             name: "Venomous Spider",
             emoji: "🕷️",
-            minHp: 25,
-            maxHp: 35,
+            minHp: 20,         // Reduced from 25
+            maxHp: 28,         // Reduced from 35
             minDamage: 3,
-            maxDamage: 6,
+            maxDamage: 5,      // Reduced from 6
             goldDropChance: 0.6,
-            goldDropAmount: {min: 1, max: 2},
+            goldDropAmount: {min: 2, max: 3},  // Increased min
             ironDropChance: 0.2,
-            ironDropAmount: {min: 0, max: 0},
+            ironDropAmount: {min: 1, max: 1},  // Guaranteed 1 iron now
             titaniumDropChance: 0,
             titaniumDropAmount: {min: 0, max: 0},
             possibleTraits: ["POISONOUS", "SWIFT"]
@@ -300,14 +300,14 @@ const ENEMY_POOLS = {
         {
             name: "Hobgoblin",
             emoji: "👹",
-            minHp: 35,
-            maxHp: 45,
-            minDamage: 5,
-            maxDamage: 9,
+            minHp: 28,         // Reduced from 35
+            maxHp: 36,         // Reduced from 45
+            minDamage: 4,      // Reduced from 5
+            maxDamage: 8,      // Reduced from 9
             goldDropChance: 0.75,
-            goldDropAmount: {min: 1, max: 3},
+            goldDropAmount: {min: 2, max: 4},  // Increased min
             ironDropChance: 0.35,
-            ironDropAmount: {min: 0, max: 1},
+            ironDropAmount: {min: 1, max: 1},  // Guaranteed 1 iron now
             titaniumDropChance: 0,
             titaniumDropAmount: {min: 0, max: 0},
             possibleTraits: ["ARMORED"]
@@ -315,14 +315,14 @@ const ENEMY_POOLS = {
         {
             name: "Skeleton Archer",
             emoji: "🏹",
-            minHp: 28,
-            maxHp: 38,
-            minDamage: 6,
-            maxDamage: 9,
+            minHp: 22,         // Reduced from 28
+            maxHp: 30,         // Reduced from 38
+            minDamage: 5,      // Reduced from 6
+            maxDamage: 8,      // Reduced from 9
             goldDropChance: 0.8,
-            goldDropAmount: {min: 2, max: 3},
+            goldDropAmount: {min: 2, max: 4},  // Adjusted
             ironDropChance: 0.3,
-            ironDropAmount: {min: 0, max: 1},
+            ironDropAmount: {min: 1, max: 1},  // Guaranteed 1 iron now
             titaniumDropChance: 0,
             titaniumDropAmount: {min: 0, max: 0},
             possibleTraits: ["SWIFT"]
@@ -330,14 +330,14 @@ const ENEMY_POOLS = {
         {
             name: "Swamp Lurker",
             emoji: "🦎",
-            minHp: 32,
-            maxHp: 42,
+            minHp: 26,         // Reduced from 32
+            maxHp: 34,         // Reduced from 42
             minDamage: 4,
-            maxDamage: 7,
+            maxDamage: 6,      // Reduced from 7
             goldDropChance: 0.7,
-            goldDropAmount: {min: 1, max: 2},
+            goldDropAmount: {min: 2, max: 3},  // Increased min
             ironDropChance: 0.25,
-            ironDropAmount: {min: 0, max: 1},
+            ironDropAmount: {min: 1, max: 1},  // Guaranteed 1 iron now
             titaniumDropChance: 0,
             titaniumDropAmount: {min: 0, max: 0},
             possibleTraits: ["POISONOUS"]
@@ -345,14 +345,14 @@ const ENEMY_POOLS = {
         {
             name: "Medium Slime",
             emoji: "🔵",
-            minHp: 38,
-            maxHp: 48,
+            minHp: 30,         // Reduced from 38
+            maxHp: 38,         // Reduced from 48
             minDamage: 3,
-            maxDamage: 6,
+            maxDamage: 5,      // Reduced from 6
             goldDropChance: 0.85,
-            goldDropAmount: {min: 2, max: 4},
+            goldDropAmount: {min: 3, max: 5},  // Increased
             ironDropChance: 0.2,
-            ironDropAmount: {min: 0, max: 0},
+            ironDropAmount: {min: 1, max: 1},  // Guaranteed 1 iron now
             titaniumDropChance: 0,
             titaniumDropAmount: {min: 0, max: 0},
             possibleTraits: ["HEALER", "REFLECTIVE"]
@@ -360,14 +360,14 @@ const ENEMY_POOLS = {
         {
             name: "Feral Werewolf",
             emoji: "🐺",
-            minHp: 36,
-            maxHp: 46,
-            minDamage: 5,
-            maxDamage: 11,
+            minHp: 29,         // Reduced from 36
+            maxHp: 37,         // Reduced from 46
+            minDamage: 4,      // Reduced from 5
+            maxDamage: 9,      // Reduced from 11
             goldDropChance: 0.75,
-            goldDropAmount: {min: 1, max: 3},
+            goldDropAmount: {min: 2, max: 4},  // Increased min
             ironDropChance: 0.35,
-            ironDropAmount: {min: 0, max: 1},
+            ironDropAmount: {min: 1, max: 1},  // Guaranteed 1 iron now
             titaniumDropChance: 0,
             titaniumDropAmount: {min: 0, max: 0},
             possibleTraits: ["BERSERKER", "SWIFT"]
@@ -379,122 +379,122 @@ const ENEMY_POOLS = {
         {
             name: "Orc Fighter",
             emoji: "👹",
-            minHp: 50,
-            maxHp: 65,
-            minDamage: 6,
-            maxDamage: 12,
+            minHp: 40,         // Reduced from 50
+            maxHp: 52,         // Reduced from 65
+            minDamage: 5,      // Reduced from 6
+            maxDamage: 10,     // Reduced from 12
             goldDropChance: 0.9,
-            goldDropAmount: {min: 2, max: 5},
+            goldDropAmount: {min: 3, max: 6},  // Adjusted
             ironDropChance: 0.6,
             ironDropAmount: {min: 1, max: 2},
             titaniumDropChance: 0.1,
-            titaniumDropAmount: {min: 0, max: 0},
+            titaniumDropAmount: {min: 1, max: 1},  // Guaranteed 1 titanium now with low chance
             possibleTraits: ["ARMORED", "BERSERKER"]
         },
         {
             name: "Cave Troll",
             emoji: "👾",
-            minHp: 70,
-            maxHp: 90,
-            minDamage: 8,
-            maxDamage: 14,
+            minHp: 56,         // Reduced from 70
+            maxHp: 72,         // Reduced from 90
+            minDamage: 7,      // Reduced from 8
+            maxDamage: 12,     // Reduced from 14
             goldDropChance: 0.8,
-            goldDropAmount: {min: 2, max: 4},
+            goldDropAmount: {min: 3, max: 5},  // Increased min
             ironDropChance: 0.7,
             ironDropAmount: {min: 1, max: 2},
             titaniumDropChance: 0.15,
-            titaniumDropAmount: {min: 0, max: 0},
+            titaniumDropAmount: {min: 1, max: 1},  // Guaranteed 1 titanium now with low chance
             possibleTraits: ["ARMORED", "HEALER"]
         },
         {
             name: "Dark Elf Scout",
             emoji: "🧝",
-            minHp: 45,
-            maxHp: 60,
-            minDamage: 7,
-            maxDamage: 11,
+            minHp: 36,         // Reduced from 45
+            maxHp: 48,         // Reduced from 60
+            minDamage: 6,      // Reduced from 7
+            maxDamage: 9,      // Reduced from 11
             goldDropChance: 0.85,
-            goldDropAmount: {min: 3, max: 6},
+            goldDropAmount: {min: 4, max: 7},  // Increased
             ironDropChance: 0.5,
-            ironDropAmount: {min: 1, max: 1},
+            ironDropAmount: {min: 1, max: 2},  // Increased max
             titaniumDropChance: 0.05,
-            titaniumDropAmount: {min: 0, max: 0},
+            titaniumDropAmount: {min: 1, max: 1},  // Guaranteed 1 titanium now with low chance
             possibleTraits: ["SWIFT", "POISONOUS"]
         },
         // New enemies for Tier 3
         {
             name: "Minotaur Warrior",
             emoji: "🐂",
-            minHp: 65,
-            maxHp: 85,
-            minDamage: 7,
-            maxDamage: 13,
+            minHp: 52,         // Reduced from 65
+            maxHp: 68,         // Reduced from 85
+            minDamage: 6,      // Reduced from 7
+            maxDamage: 11,     // Reduced from 13
             goldDropChance: 0.9,
-            goldDropAmount: {min: 3, max: 5},
+            goldDropAmount: {min: 4, max: 6},  // Increased
             ironDropChance: 0.65,
             ironDropAmount: {min: 1, max: 2},
             titaniumDropChance: 0.1,
-            titaniumDropAmount: {min: 0, max: 0},
+            titaniumDropAmount: {min: 1, max: 1},  // Guaranteed 1 titanium now with low chance
             possibleTraits: ["BERSERKER", "ENRAGED"]
         },
         {
             name: "Undead Knight",
             emoji: "⚔️",
-            minHp: 55,
-            maxHp: 70,
-            minDamage: 8,
-            maxDamage: 12,
+            minHp: 44,         // Reduced from 55
+            maxHp: 56,         // Reduced from 70
+            minDamage: 7,      // Reduced from 8
+            maxDamage: 10,     // Reduced from 12
             goldDropChance: 0.95,
-            goldDropAmount: {min: 3, max: 6},
+            goldDropAmount: {min: 4, max: 7},  // Increased
             ironDropChance: 0.7,
             ironDropAmount: {min: 1, max: 2},
             titaniumDropChance: 0.15,
-            titaniumDropAmount: {min: 0, max: 0},
+            titaniumDropAmount: {min: 1, max: 1},  // Guaranteed 1 titanium now with low chance
             possibleTraits: ["ARMORED", "REFLECTIVE"]
         },
         {
             name: "Poison Drake",
             emoji: "🐉",
-            minHp: 60,
-            maxHp: 75,
-            minDamage: 7,
-            maxDamage: 13,
+            minHp: 48,         // Reduced from 60
+            maxHp: 60,         // Reduced from 75
+            minDamage: 6,      // Reduced from 7
+            maxDamage: 11,     // Reduced from 13
             goldDropChance: 0.9,
-            goldDropAmount: {min: 3, max: 5},
+            goldDropAmount: {min: 4, max: 6},  // Increased
             ironDropChance: 0.6,
             ironDropAmount: {min: 1, max: 2},
             titaniumDropChance: 0.1,
-            titaniumDropAmount: {min: 0, max: 0},
+            titaniumDropAmount: {min: 1, max: 1},  // Guaranteed 1 titanium now with low chance
             possibleTraits: ["POISONOUS", "HEALER"]
         },
         {
             name: "Desert Scorpion",
             emoji: "🦂",
-            minHp: 48,
-            maxHp: 62,
-            minDamage: 8,
-            maxDamage: 14,
+            minHp: 38,         // Reduced from 48
+            maxHp: 50,         // Reduced from 62
+            minDamage: 7,      // Reduced from 8
+            maxDamage: 12,     // Reduced from 14
             goldDropChance: 0.85,
-            goldDropAmount: {min: 2, max: 4},
+            goldDropAmount: {min: 3, max: 5},  // Increased
             ironDropChance: 0.55,
-            ironDropAmount: {min: 1, max: 1},
+            ironDropAmount: {min: 1, max: 2},  // Increased max
             titaniumDropChance: 0.08,
-            titaniumDropAmount: {min: 0, max: 0},
+            titaniumDropAmount: {min: 1, max: 1},  // Guaranteed 1 titanium now with low chance
             possibleTraits: ["POISONOUS", "SWIFT"]
         },
         {
             name: "Forest Wendigo",
             emoji: "🦌",
-            minHp: 58,
-            maxHp: 72,
-            minDamage: 9,
-            maxDamage: 15,
+            minHp: 46,         // Reduced from 58
+            maxHp: 58,         // Reduced from 72
+            minDamage: 8,      // Reduced from 9
+            maxDamage: 13,     // Reduced from 15
             goldDropChance: 0.8,
-            goldDropAmount: {min: 2, max: 5},
+            goldDropAmount: {min: 3, max: 6},  // Increased
             ironDropChance: 0.5,
             ironDropAmount: {min: 1, max: 2},
             titaniumDropChance: 0.12,
-            titaniumDropAmount: {min: 0, max: 0},
+            titaniumDropAmount: {min: 1, max: 1},  // Guaranteed 1 titanium now with low chance
             possibleTraits: ["BERSERKER", "VAMPIRIC"]
         }
     ],
@@ -504,122 +504,122 @@ const ENEMY_POOLS = {
         {
             name: "Orc Warlord",
             emoji: "👹",
-            minHp: 90,
-            maxHp: 110,
-            minDamage: 10,
-            maxDamage: 18,
+            minHp: 72,         // Reduced from 90
+            maxHp: 88,         // Reduced from 110
+            minDamage: 8,      // Reduced from 10
+            maxDamage: 15,     // Reduced from 18
             goldDropChance: 1.0,
-            goldDropAmount: {min: 5, max: 7},
+            goldDropAmount: {min: 6, max: 9},  // Increased
             ironDropChance: 0.8,
             ironDropAmount: {min: 2, max: 3},
             titaniumDropChance: 0.3,
-            titaniumDropAmount: {min: 0, max: 1},
+            titaniumDropAmount: {min: 1, max: 1},
             possibleTraits: ["ARMORED", "BERSERKER", "SWIFT"]
         },
         {
             name: "Cave Dragon",
             emoji: "🐉",
-            minHp: 120,
-            maxHp: 150,
-            minDamage: 12,
-            maxDamage: 20,
+            minHp: 96,         // Reduced from 120
+            maxHp: 120,        // Reduced from 150
+            minDamage: 10,     // Reduced from 12
+            maxDamage: 17,     // Reduced from 20
             goldDropChance: 1.0,
-            goldDropAmount: {min: 7, max: 12},
+            goldDropAmount: {min: 8, max: 14}, // Increased
             ironDropChance: 0.9,
             ironDropAmount: {min: 2, max: 4},
             titaniumDropChance: 0.4,
-            titaniumDropAmount: {min: 0, max: 1},
+            titaniumDropAmount: {min: 1, max: 1},
             possibleTraits: ["REFLECTIVE", "ENRAGED"]
         },
         {
             name: "Dark Elf Assassin",
             emoji: "🧝",
-            minHp: 80,
-            maxHp: 100,
-            minDamage: 15,
-            maxDamage: 25,
+            minHp: 64,         // Reduced from 80
+            maxHp: 80,         // Reduced from 100
+            minDamage: 12,     // Reduced from 15
+            maxDamage: 20,     // Reduced from 25
             goldDropChance: 0.95,
-            goldDropAmount: {min: 6, max: 10},
+            goldDropAmount: {min: 7, max: 12}, // Increased
             ironDropChance: 0.7,
-            ironDropAmount: {min: 1, max: 3},
+            ironDropAmount: {min: 2, max: 3},  // Increased min
             titaniumDropChance: 0.25,
-            titaniumDropAmount: {min: 0, max: 1},
+            titaniumDropAmount: {min: 1, max: 1},
             possibleTraits: ["SWIFT", "POISONOUS", "VAMPIRIC"]
         },
         // New enemies for Tier 4
         {
             name: "Frost Giant",
             emoji: "❄️",
-            minHp: 110,
-            maxHp: 135,
-            minDamage: 11,
-            maxDamage: 19,
+            minHp: 88,         // Reduced from 110
+            maxHp: 108,        // Reduced from 135
+            minDamage: 9,      // Reduced from 11
+            maxDamage: 16,     // Reduced from 19
             goldDropChance: 1.0,
-            goldDropAmount: {min: 6, max: 9},
+            goldDropAmount: {min: 7, max: 11}, // Increased
             ironDropChance: 0.85,
             ironDropAmount: {min: 2, max: 3},
             titaniumDropChance: 0.35,
-            titaniumDropAmount: {min: 0, max: 1},
+            titaniumDropAmount: {min: 1, max: 1},
             possibleTraits: ["ARMORED", "REFLECTIVE"]
         },
         {
             name: "Necromancer",
             emoji: "🧙",
-            minHp: 85,
-            maxHp: 105,
-            minDamage: 14,
-            maxDamage: 22,
+            minHp: 68,         // Reduced from 85
+            maxHp: 84,         // Reduced from 105
+            minDamage: 11,     // Reduced from 14
+            maxDamage: 18,     // Reduced from 22
             goldDropChance: 1.0,
-            goldDropAmount: {min: 7, max: 11},
+            goldDropAmount: {min: 8, max: 13}, // Increased
             ironDropChance: 0.75,
             ironDropAmount: {min: 2, max: 3},
             titaniumDropChance: 0.3,
-            titaniumDropAmount: {min: 0, max: 1},
+            titaniumDropAmount: {min: 1, max: 1},
             possibleTraits: ["HEALER", "VAMPIRIC"]
         },
         {
             name: "Lava Golem",
             emoji: "🔥",
-            minHp: 100,
-            maxHp: 120,
-            minDamage: 13,
-            maxDamage: 21,
+            minHp: 80,         // Reduced from 100
+            maxHp: 96,         // Reduced from 120
+            minDamage: 10,     // Reduced from 13
+            maxDamage: 17,     // Reduced from 21
             goldDropChance: 1.0,
-            goldDropAmount: {min: 6, max: 10},
+            goldDropAmount: {min: 7, max: 12}, // Increased
             ironDropChance: 0.9,
             ironDropAmount: {min: 2, max: 4},
             titaniumDropChance: 0.4,
-            titaniumDropAmount: {min: 0, max: 1},
+            titaniumDropAmount: {min: 1, max: 1},
             possibleTraits: ["REFLECTIVE", "ARMORED"]
         },
         {
             name: "Large Slime",
             emoji: "🟣",
-            minHp: 95,
-            maxHp: 115,
-            minDamage: 9,
-            maxDamage: 16,
+            minHp: 76,         // Reduced from 95
+            maxHp: 92,         // Reduced from 115
+            minDamage: 7,      // Reduced from 9
+            maxDamage: 13,     // Reduced from 16
             goldDropChance: 1.0,
-            goldDropAmount: {min: 7, max: 12},
+            goldDropAmount: {min: 8, max: 14}, // Increased
             ironDropChance: 0.8,
             ironDropAmount: {min: 2, max: 3},
             titaniumDropChance: 0.35,
-            titaniumDropAmount: {min: 0, max: 1},
+            titaniumDropAmount: {min: 1, max: 1},
             possibleTraits: ["HEALER", "REFLECTIVE", "ARMORED"]
         },
         {
             name: "Basilisk",
             emoji: "🐍",
-            minHp: 88,
-            maxHp: 108,
-            minDamage: 16,
-            maxDamage: 24,
+            minHp: 70,         // Reduced from 88
+            maxHp: 86,         // Reduced from 108
+            minDamage: 13,     // Reduced from 16
+            maxDamage: 19,     // Reduced from 24
             goldDropChance: 0.95,
-            goldDropAmount: {min: 6, max: 10},
+            goldDropAmount: {min: 7, max: 12}, // Increased
             ironDropChance: 0.75,
             ironDropAmount: {min: 2, max: 3},
             titaniumDropChance: 0.3,
-            titaniumDropAmount: {min: 0, max: 1},
+            titaniumDropAmount: {min: 1, max: 1},
             possibleTraits: ["POISONOUS", "SWIFT", "REFLECTIVE"]
         }
     ],
@@ -629,12 +629,12 @@ const ENEMY_POOLS = {
         {
             name: "Demon Knight",
             emoji: "👿",
-            minHp: 140,
-            maxHp: 180,
-            minDamage: 18,
-            maxDamage: 28,
+            minHp: 112,        // Reduced from 140
+            maxHp: 144,        // Reduced from 180
+            minDamage: 14,     // Reduced from 18
+            maxDamage: 22,     // Reduced from 28
             goldDropChance: 1.0,
-            goldDropAmount: {min: 10, max: 15},
+            goldDropAmount: {min: 12, max: 18}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 4, max: 6},
             titaniumDropChance: 0.6,
@@ -644,12 +644,12 @@ const ENEMY_POOLS = {
         {
             name: "Mountain Giant",
             emoji: "🗿",
-            minHp: 200,
-            maxHp: 250,
-            minDamage: 20,
-            maxDamage: 30,
+            minHp: 160,        // Reduced from 200
+            maxHp: 200,        // Reduced from 250
+            minDamage: 16,     // Reduced from 20
+            maxDamage: 24,     // Reduced from 30
             goldDropChance: 1.0,
-            goldDropAmount: {min: 12, max: 20},
+            goldDropAmount: {min: 15, max: 24}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 5, max: 7},
             titaniumDropChance: 0.7,
@@ -659,28 +659,28 @@ const ENEMY_POOLS = {
         {
             name: "Shadow Assassin",
             emoji: "👤",
-            minHp: 120,
-            maxHp: 150,
-            minDamage: 25,
-            maxDamage: 35,
+            minHp: 96,         // Reduced from 120
+            maxHp: 120,        // Reduced from 150
+            minDamage: 20,     // Reduced from 25
+            maxDamage: 28,     // Reduced from 35
             goldDropChance: 1.0,
-            goldDropAmount: {min: 10, max: 17},
+            goldDropAmount: {min: 12, max: 20}, // Increased
             ironDropChance: 0.9,
             ironDropAmount: {min: 3, max: 5},
             titaniumDropChance: 0.5,
-            titaniumDropAmount: {min: 1, max: 1},
+            titaniumDropAmount: {min: 1, max: 2},  // Increased max
             possibleTraits: ["SWIFT", "POISONOUS", "VAMPIRIC"]
         },
         // New enemies for Tier 5
         {
             name: "Infernal Behemoth",
             emoji: "👹",
-            minHp: 180,
-            maxHp: 220,
-            minDamage: 22,
-            maxDamage: 32,
+            minHp: 144,        // Reduced from 180
+            maxHp: 176,        // Reduced from 220
+            minDamage: 18,     // Reduced from 22
+            maxDamage: 26,     // Reduced from 32
             goldDropChance: 1.0,
-            goldDropAmount: {min: 11, max: 18},
+            goldDropAmount: {min: 14, max: 22}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 4, max: 7},
             titaniumDropChance: 0.65,
@@ -690,12 +690,12 @@ const ENEMY_POOLS = {
         {
             name: "Storm Elemental",
             emoji: "⚡",
-            minHp: 150,
-            maxHp: 190,
-            minDamage: 24,
-            maxDamage: 34,
+            minHp: 120,        // Reduced from 150
+            maxHp: 152,        // Reduced from 190
+            minDamage: 19,     // Reduced from 24
+            maxDamage: 27,     // Reduced from 34
             goldDropChance: 1.0,
-            goldDropAmount: {min: 11, max: 19},
+            goldDropAmount: {min: 14, max: 23}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 4, max: 6},
             titaniumDropChance: 0.6,
@@ -705,12 +705,12 @@ const ENEMY_POOLS = {
         {
             name: "Undead Warlord",
             emoji: "☠️",
-            minHp: 165,
-            maxHp: 205,
-            minDamage: 20,
-            maxDamage: 30,
+            minHp: 132,        // Reduced from 165
+            maxHp: 164,        // Reduced from 205
+            minDamage: 16,     // Reduced from 20
+            maxDamage: 24,     // Reduced from 30
             goldDropChance: 1.0,
-            goldDropAmount: {min: 12, max: 17},
+            goldDropAmount: {min: 15, max: 21}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 4, max: 7},
             titaniumDropChance: 0.7,
@@ -720,12 +720,12 @@ const ENEMY_POOLS = {
         {
             name: "Warlock",
             emoji: "🧙‍♂️",
-            minHp: 130,
-            maxHp: 170,
-            minDamage: 26,
-            maxDamage: 36,
+            minHp: 104,        // Reduced from 130
+            maxHp: 136,        // Reduced from 170
+            minDamage: 21,     // Reduced from 26
+            maxDamage: 29,     // Reduced from 36
             goldDropChance: 1.0,
-            goldDropAmount: {min: 11, max: 16},
+            goldDropAmount: {min: 14, max: 20}, // Increased
             ironDropChance: 0.95,
             ironDropAmount: {min: 4, max: 6},
             titaniumDropChance: 0.55,
@@ -735,12 +735,12 @@ const ENEMY_POOLS = {
         {
             name: "Black Wyrm",
             emoji: "🐲",
-            minHp: 170,
-            maxHp: 220,
-            minDamage: 22,
-            maxDamage: 32,
+            minHp: 136,        // Reduced from 170
+            maxHp: 176,        // Reduced from 220
+            minDamage: 18,     // Reduced from 22
+            maxDamage: 26,     // Reduced from 32
             goldDropChance: 1.0,
-            goldDropAmount: {min: 12, max: 19},
+            goldDropAmount: {min: 15, max: 23}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 5, max: 7},
             titaniumDropChance: 0.65,
@@ -754,12 +754,12 @@ const ENEMY_POOLS = {
         {
             name: "Demon Lord",
             emoji: "😈",
-            minHp: 250,
-            maxHp: 300,
-            minDamage: 30,
-            maxDamage: 45,
+            minHp: 200,        // Reduced from 250
+            maxHp: 240,        // Reduced from 300
+            minDamage: 24,     // Reduced from 30
+            maxDamage: 36,     // Reduced from 45
             goldDropChance: 1.0,
-            goldDropAmount: {min: 20, max: 30},
+            goldDropAmount: {min: 24, max: 36}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 7, max: 12},
             titaniumDropChance: 0.9,
@@ -769,12 +769,12 @@ const ENEMY_POOLS = {
         {
             name: "Ancient Dragon",
             emoji: "🐲",
-            minHp: 350,
-            maxHp: 450,
-            minDamage: 35,
-            maxDamage: 50,
+            minHp: 280,        // Reduced from 350
+            maxHp: 360,        // Reduced from 450
+            minDamage: 28,     // Reduced from 35
+            maxDamage: 40,     // Reduced from 50
             goldDropChance: 1.0,
-            goldDropAmount: {min: 25, max: 40},
+            goldDropAmount: {min: 30, max: 48}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 10, max: 15},
             titaniumDropChance: 1.0,
@@ -784,12 +784,12 @@ const ENEMY_POOLS = {
         {
             name: "Elder Vampire",
             emoji: "🧛",
-            minHp: 200,
-            maxHp: 250,
-            minDamage: 40,
-            maxDamage: 60,
+            minHp: 160,        // Reduced from 200
+            maxHp: 200,        // Reduced from 250
+            minDamage: 32,     // Reduced from 40
+            maxDamage: 48,     // Reduced from 60
             goldDropChance: 1.0,
-            goldDropAmount: {min: 22, max: 35},
+            goldDropAmount: {min: 26, max: 42}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 9, max: 12},
             titaniumDropChance: 0.8,
@@ -799,92 +799,92 @@ const ENEMY_POOLS = {
         {
             name: "Dark Overlord",
             emoji: "👑",
-            minHp: 300,
-            maxHp: 400,
-            minDamage: 45,
-            maxDamage: 65,
+            minHp: 240,        // Reduced from 300
+            maxHp: 320,        // Reduced from 400
+            minDamage: 36,     // Reduced from 45
+            maxDamage: 52,     // Reduced from 65
             goldDropChance: 1.0,
-            goldDropAmount: {min: 30, max: 50},
+            goldDropAmount: {min: 36, max: 60}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 12, max: 20},
             titaniumDropChance: 1.0,
-            titaniumDropAmount: {min: 5, max: 7},
+            titaniumDropAmount: {min: 5, max: 8},  // Increased max
             possibleTraits: ["ARMORED", "REFLECTIVE", "VAMPIRIC", "ENRAGED", "SWIFT"]
         },
         // New enemies for Tier 6
         {
             name: "Abyssal Horror",
             emoji: "👁️",
-            minHp: 280,
-            maxHp: 350,
-            minDamage: 38,
-            maxDamage: 55,
+            minHp: 224,        // Reduced from 280
+            maxHp: 280,        // Reduced from 350
+            minDamage: 30,     // Reduced from 38
+            maxDamage: 44,     // Reduced from 55
             goldDropChance: 1.0,
-            goldDropAmount: {min: 27, max: 42},
+            goldDropAmount: {min: 33, max: 50}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 11, max: 17},
             titaniumDropChance: 0.95,
-            titaniumDropAmount: {min: 4, max: 6},
+            titaniumDropAmount: {min: 4, max: 7},  // Increased max
             possibleTraits: ["POISONOUS", "VAMPIRIC", "ENRAGED", "HEALER"]
         },
         {
             name: "Arkanium Golem",
             emoji: "🤖",
-            minHp: 400,
-            maxHp: 500,
-            minDamage: 32,
-            maxDamage: 48,
+            minHp: 320,        // Reduced from 400
+            maxHp: 400,        // Reduced from 500
+            minDamage: 26,     // Reduced from 32
+            maxDamage: 38,     // Reduced from 48
             goldDropChance: 1.0,
-            goldDropAmount: {min: 32, max: 47},
+            goldDropAmount: {min: 38, max: 56}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 12, max: 20},
             titaniumDropChance: 1.0,
-            titaniumDropAmount: {min: 6, max: 9},
+            titaniumDropAmount: {min: 6, max: 10}, // Increased max
             possibleTraits: ["ARMORED", "REFLECTIVE", "BERSERKER", "HEALER"]
         },
         {
             name: "Celestial Seraph",
             emoji: "👼",
-            minHp: 260,
-            maxHp: 320,
-            minDamage: 42,
-            maxDamage: 62,
+            minHp: 208,        // Reduced from 260
+            maxHp: 256,        // Reduced from 320
+            minDamage: 34,     // Reduced from 42
+            maxDamage: 50,     // Reduced from 62
             goldDropChance: 1.0,
-            goldDropAmount: {min: 25, max: 40},
+            goldDropAmount: {min: 30, max: 48}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 10, max: 15},
             titaniumDropChance: 0.9,
-            titaniumDropAmount: {min: 3, max: 5},
+            titaniumDropAmount: {min: 3, max: 6},  // Increased max
             possibleTraits: ["REFLECTIVE", "HEALER", "SWIFT", "ARMORED"]
         },
         {
             name: "Chaos Titan",
             emoji: "💥",
-            minHp: 320,
-            maxHp: 420,
-            minDamage: 48,
-            maxDamage: 68,
+            minHp: 256,        // Reduced from 320
+            maxHp: 336,        // Reduced from 420
+            minDamage: 38,     // Reduced from 48
+            maxDamage: 54,     // Reduced from 68
             goldDropChance: 1.0,
-            goldDropAmount: {min: 35, max: 55},
+            goldDropAmount: {min: 42, max: 66}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 14, max: 22},
             titaniumDropChance: 1.0,
-            titaniumDropAmount: {min: 6, max: 9},
+            titaniumDropAmount: {min: 6, max: 10}, // Increased max
             possibleTraits: ["BERSERKER", "ENRAGED", "SWIFT", "VAMPIRIC"]
         },
         {
             name: "Shadow Emperor",
             emoji: "🌑",
-            minHp: 290,
-            maxHp: 370,
-            minDamage: 50,
-            maxDamage: 70,
+            minHp: 232,        // Reduced from 290
+            maxHp: 296,        // Reduced from 370
+            minDamage: 40,     // Reduced from 50
+            maxDamage: 56,     // Reduced from 70
             goldDropChance: 1.0,
-            goldDropAmount: {min: 27, max: 45},
+            goldDropAmount: {min: 32, max: 54}, // Increased
             ironDropChance: 1.0,
             ironDropAmount: {min: 12, max: 19},
             titaniumDropChance: 1.0,
-            titaniumDropAmount: {min: 5, max: 8},
+            titaniumDropAmount: {min: 5, max: 9},  // Increased max
             possibleTraits: ["SWIFT", "VAMPIRIC", "POISONOUS", "ENRAGED", "REFLECTIVE"]
         }
     ]
