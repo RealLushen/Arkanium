@@ -1267,13 +1267,10 @@ function updateActiveMutations() {
         
         // Add category-based styling
         if (mutation.category === MUTATION_CATEGORIES.POSITIVE) {
-            mutationElement.style.backgroundColor = '#e8f5e9';
             mutationElement.style.borderLeft = '3px solid #4caf50';
         } else if (mutation.category === MUTATION_CATEGORIES.NEGATIVE) {
-            mutationElement.style.backgroundColor = '#ffebee';
             mutationElement.style.borderLeft = '3px solid #f44336';
         } else {
-            mutationElement.style.backgroundColor = '#fff3e0';
             mutationElement.style.borderLeft = '3px solid #ff9800';
         }
         
