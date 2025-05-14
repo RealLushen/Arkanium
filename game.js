@@ -253,13 +253,14 @@ function generateEnemy() {
     // Select a random enemy from the pool
     const enemyTemplate = enemiesPool[Math.floor(Math.random() * enemiesPool.length)];
     
-    // Calculate enemy stats (keeping damage scaling but using HP directly from template)
-    const roundScaling = 1 + (gameState.rounds - 1) * 0.01; // 1% increase per round
+    // Calculate enemy stats (with scaling based on round number)
+    const roundScaling = 1 + (gameState.rounds - 1) * 0.01; // 5% increase per round
+    const hpScaling = Math.max(1, (gameState.rounds - 1) * 0.02); // HP increases more significantly
     
-    // Use enemy HP directly from the template without scaling
-    const hp = getRandomInt(enemyTemplate.minHp, enemyTemplate.maxHp);
+    const minHp = Math.floor(enemyTemplate.minHp * (1 + hpScaling));
+    const maxHp = Math.floor(enemyTemplate.maxHp * (1 + hpScaling));
+    const hp = getRandomInt(minHp, maxHp);
     
-    // Apply scaling only to damage
     const minDamage = Math.floor(enemyTemplate.minDamage * roundScaling);
     const maxDamage = Math.floor(enemyTemplate.maxDamage * roundScaling);
     
