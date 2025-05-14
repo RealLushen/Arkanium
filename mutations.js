@@ -46,10 +46,10 @@ const MUTATIONS = [
     {
         id: "vampiric_strikes",
         name: "Vampiric Strikes",
-        description: "Your attacks heal you for 15% of the damage dealt",
+        description: "Your attacks heal you for 10% of the damage dealt",
         category: MUTATION_CATEGORIES.POSITIVE,
         effect: (gameState) => {
-            gameState.player.vampiricPercentage = (gameState.player.vampiricPercentage || 0) + 0.15;
+            gameState.player.vampiricPercentage = (gameState.player.vampiricPercentage || 0) + 0.10;
         }
     },
     {
@@ -95,19 +95,19 @@ const MUTATIONS = [
     {
         id: "material_fortune",
         name: "Material Fortune",
-        description: "Increases the chance of material drops by 25%",
+        description: "Increases the chance of material drops by 20%",
         category: MUTATION_CATEGORIES.POSITIVE,
         effect: (gameState) => {
-            gameState.materialDropChanceModifier = (gameState.materialDropChanceModifier || 1) * 1.25;
+            gameState.materialDropChanceModifier = (gameState.materialDropChanceModifier || 1) * 1.20;
         }
     },
     {
         id: "thorns",
         name: "Thorns Aura",
-        description: "Reflect 15% of damage taken back to the attacker",
+        description: "Reflect 20% of damage taken back to the attacker",
         category: MUTATION_CATEGORIES.POSITIVE,
         effect: (gameState) => {
-            gameState.player.thornsPercentage = (gameState.player.thornsPercentage || 0) + 0.15;
+            gameState.player.thornsPercentage = (gameState.player.thornsPercentage || 0) + 0.20;
         }
     },
 

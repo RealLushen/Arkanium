@@ -1,6 +1,20 @@
 // Patch notes data
 const PATCH_NOTES = [
     {
+        version: "0.0.6",
+        date: "14.05.2025",
+        changes: [
+            "NEW BALANCE & UI UPDATE!",
+            "Nerfed Enemy HP Increase per Round from 20% to 2%",
+            "Nerfed Enemy DMG Increase per Round from 5% to 1%",
+            "Buffed Thorns Aura from 15% to 20%",
+            "Nerfed Vampiric Strikes from 15% to 10%",
+            "Nerfed Material Fortune from 25% to 20%",
+            "Fixed Active Mutations Container",
+            "Changed Actions Container to be below Battle Arena"
+        ]
+    },
+    {
         version: "0.0.5",
         date: "14.05.2025",
         changes: [
