@@ -5,7 +5,7 @@ const PATCH_NOTES = [
         date: "14.05.2025",
         changes: [
             "NEW BALANCE & UI UPDATE!",
-            "Nerfed Enemy HP Increase per Round from 20% to 2%",
+            "Nerfed Enemy HP Increase per Round from 20% to 5%",
             "Nerfed Enemy DMG Increase per Round from 5% to 1%",
             "Buffed Thorns Aura from 15% to 20%",
             "Nerfed Vampiric Strikes from 15% to 10%",

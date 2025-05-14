@@ -254,8 +254,8 @@ function generateEnemy() {
     const enemyTemplate = enemiesPool[Math.floor(Math.random() * enemiesPool.length)];
     
     // Calculate enemy stats (with scaling based on round number)
-    const roundScaling = 1 + (gameState.rounds - 1) * 0.01; // 5% increase per round
-    const hpScaling = Math.max(1, (gameState.rounds - 1) * 0.02); // HP increases more significantly
+    const roundScaling = 1 + (gameState.rounds - 1) * 0.01; // 1% increase per round
+    const hpScaling = Math.max(1, (gameState.rounds - 1) * 0.03); // HP increases more significantly
     
     const minHp = Math.floor(enemyTemplate.minHp * (1 + hpScaling));
     const maxHp = Math.floor(enemyTemplate.maxHp * (1 + hpScaling));
